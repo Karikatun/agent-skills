@@ -64,10 +64,14 @@ def main():
         checked += 1
 
     print(f"PASS: {len(skills)} skill packages, {checked} text files; local references and bounded content checks", flush=True)
-    subprocess.run(
-        [sys.executable, "-B", str(ROOT / "evaluations/api-performance-review/test_fixtures.py")],
-        check=True, cwd=ROOT, timeout=60,
-    )
+    for test_file in (
+        "evaluations/api-performance-review/test_fixtures.py",
+        "skills/local-video-analysis/scripts/test_video.py",
+    ):
+        subprocess.run(
+            [sys.executable, "-B", str(ROOT / test_file)],
+            check=True, cwd=ROOT, timeout=60,
+        )
     print("These checks do not establish agent quality, host isolation, or exhaustive secret detection.")
 
 
