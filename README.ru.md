@@ -16,6 +16,8 @@
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Превратить технические заметки в понятный пост без выдуманных фактов |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Проверить конкретные угрозы, действующие меры защиты и пробелы в доказательствах |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Разобрать видео по локальной расшифровке и кадрам с таймкодами |
+| [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Оценить код через принципы Clean Code без механического рефакторинга |
+| [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Оценить границы и зависимости с учётом реальной стоимости изменений |
 
 Инструкции написаны на английском; ответы — на языке пользователя. Навыки устанавливаются независимо и не требуют других навыков, MCP-серверов или API-ключей. Большинство содержит только инструкции. Local Video Analysis также включает Python-скрипты и требует отдельно установленных инструментов обработки медиа и модели; порядок настройки описан в его руководстве. Проверки коллекции используют Python 3.9+ и стандартную библиотеку.
 
@@ -35,6 +37,8 @@
 | Humanize Dev Post 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip.sha256) |
 | Application Security Review 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip.sha256) |
 | Local Video Analysis 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/local-video-analysis-v1.0.0/local-video-analysis-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/local-video-analysis-v1.0.0/local-video-analysis-1.0.0.zip.sha256) |
+| Martin Clean Code 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-code-v1.0.0/martin-clean-code-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-code-v1.0.0/martin-clean-code-1.0.0.zip.sha256) |
+| Martin Clean Architecture 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-architecture-v1.0.0/martin-clean-architecture-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-architecture-v1.0.0/martin-clean-architecture-1.0.0.zip.sha256) |
 
 1. Скачай выбранный ZIP и файл контрольной суммы в одну папку.
 2. Перед распаковкой проверь контрольную сумму. В macOS выполни подходящую команду из этой папки:
@@ -99,6 +103,8 @@
 - [Humanize Dev Post](evaluations/humanize-dev-post/VALIDATION.md): проверенные примеры и ограничения.
 - [Application Security Review](evaluations/application-security-review/VALIDATION.md): проверенные примеры и ограничения.
 - [Local Video Analysis](evaluations/local-video-analysis/VALIDATION.md): проверенные примеры и ограничения.
+- [Martin Clean Code](evaluations/martin-clean-code/VALIDATION.md): проверенные примеры и ограничения.
+- [Martin Clean Architecture](evaluations/martin-clean-architecture/VALIDATION.md): проверенные примеры и ограничения.
 - [Границы безопасности](SECURITY.md): доступ, происхождение, объём проверки и оставшиеся ограничения. Инструкция навыка не создаёт песочницу.
 
 Проверка состава пакетов, семи API-примеров и 21 проверки видеоинструмента (POSIX):

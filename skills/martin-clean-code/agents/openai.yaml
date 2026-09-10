@@ -1,0 +1,4 @@
+interface:
+  display_name: "Martin Clean Code"
+  short_description: "Focused Clean Code lens grounded in code evidence"
+  default_prompt: "Use $martin-clean-code to assess the requested code or boundary, including a no-change option."

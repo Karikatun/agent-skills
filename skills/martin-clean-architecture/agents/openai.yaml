@@ -1,0 +1,4 @@
+interface:
+  display_name: "Martin Clean Architecture"
+  short_description: "Focused Clean Architecture lens grounded in code evidence"
+  default_prompt: "Use $martin-clean-architecture to assess the requested code or boundary, including a no-change option."
