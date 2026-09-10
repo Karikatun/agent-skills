@@ -1,0 +1,6 @@
+interface:
+  display_name: "API Performance Review"
+  short_description: "Review API cost, scaling, and failure behavior"
+  default_prompt: "Use $api-performance-review to review this API path for costly work and failure amplification, with evidence, minimal fixes, and focused verification."
+policy:
+  allow_implicit_invocation: true

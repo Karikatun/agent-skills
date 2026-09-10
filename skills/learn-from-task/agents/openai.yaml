@@ -1,0 +1,4 @@
+interface:
+  display_name: "Learn from Task"
+  short_description: "Turn completed work into durable lessons"
+  default_prompt: "Use $learn-from-task to review this completed task and propose durable learning artifacts."
