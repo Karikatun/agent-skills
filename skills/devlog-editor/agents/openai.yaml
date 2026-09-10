@@ -1,0 +1,4 @@
+interface:
+  display_name: "Devlog Editor"
+  short_description: "Check the story, facts and role of technical posts"
+  default_prompt: "Use $devlog-editor to audit this development post and its supplied series context without rewriting it."

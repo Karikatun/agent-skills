@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanize Dev Post"
+  short_description: "Readable development stories with faithful facts"
+  default_prompt: "Use $humanize-dev-post to turn these technical notes into a readable post without strengthening the evidence."
