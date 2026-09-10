@@ -16,6 +16,8 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Readable development stories with faithful facts and requested format |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Trace concrete security defects, current controls and evidence gaps |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Prepare local speech and timestamped frame evidence from videos |
+| [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Apply a focused Clean Code lens without mechanical rules or rewrites |
+| [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Assess boundaries and dependency direction against real change costs |
 
 The collection uses English instructions and replies in the user's language. Each skill works independently, without a companion skill, MCP server or API key. Most contain instructions only. Local Video Analysis includes Python helpers and requires separately installed media tools and a model; see its setup guide. Repository checks use Python 3.9+ and its standard library.
 
@@ -35,6 +37,8 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 | Humanize Dev Post 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip.sha256) |
 | Application Security Review 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip.sha256) |
 | Local Video Analysis 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/local-video-analysis-v1.0.0/local-video-analysis-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/local-video-analysis-v1.0.0/local-video-analysis-1.0.0.zip.sha256) |
+| Martin Clean Code 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-code-v1.0.0/martin-clean-code-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-code-v1.0.0/martin-clean-code-1.0.0.zip.sha256) |
+| Martin Clean Architecture 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-architecture-v1.0.0/martin-clean-architecture-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/martin-clean-architecture-v1.0.0/martin-clean-architecture-1.0.0.zip.sha256) |
 
 1. Download the chosen ZIP and its checksum file into the same folder.
 2. Verify the checksum before extraction. On macOS, run the appropriate command from that folder:
@@ -99,6 +103,8 @@ The workflows do not depend on a particular application language or framework. H
 - [Humanize Dev Post](evaluations/humanize-dev-post/VALIDATION.md): scoped evaluation and limitations.
 - [Application Security Review](evaluations/application-security-review/VALIDATION.md): scoped evaluation and limitations.
 - [Local Video Analysis](evaluations/local-video-analysis/VALIDATION.md): scoped evaluation and limitations.
+- [Martin Clean Code](evaluations/martin-clean-code/VALIDATION.md): scoped evaluation and limitations.
+- [Martin Clean Architecture](evaluations/martin-clean-architecture/VALIDATION.md): scoped evaluation and limitations.
 - [Security boundaries](SECURITY.md): access, source provenance, evaluation scope, and known limits. Skill instructions do not create a sandbox.
 
 To run local package checks, seven API fixture tests and 21 video-helper tests (POSIX):
