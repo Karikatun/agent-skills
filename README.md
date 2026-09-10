@@ -10,8 +10,10 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 | --- | --- | --- |
 | [API Performance Review](skills/api-performance-review/README.md) | 1.0.2 | Trace request cost, scaling, retries, caching, and failure behavior; distinguish defects from missing evidence |
 | [Learn from Task](skills/learn-from-task/README.md) | 1.0.0 | Extract useful lessons from completed work and propose the smallest durable improvement before writing it |
+| [Documentation Update](skills/documentation-update/README.md) | 1.0.0 | Audit or synchronize documentation with verified implementation behavior |
+| [Humanize Russian Text](skills/humanize-russian-text/README.md) | 1.0.0 | Natural Russian copy with preserved facts, conditions, and audience register |
 
-Both skills are instruction-only, written in English, and answer in the user's language. They require no other skill, package, MCP server, subscription beyond the chosen agent host, or API key. Optional evaluation scripts use Python 3.9+ and its standard library.
+These skills are instruction-only, written in English, and answer in the user's language. They require no other skill, package, MCP server, subscription beyond the chosen agent host, or API key. Optional evaluation scripts use Python 3.9+ and its standard library.
 
 ## Install one skill
 
@@ -23,6 +25,8 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 | --- | --- | --- |
 | API Performance Review 1.0.2 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip.sha256) |
 | Learn from Task 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip.sha256) |
+| Documentation Update 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip.sha256) |
+| Humanize Russian Text 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
 
 1. Download the chosen ZIP and its checksum file into the same folder.
 2. Verify the checksum before extraction. On macOS, run the appropriate command from that folder:
@@ -81,6 +85,8 @@ The workflows do not depend on a particular application language or framework. H
 
 - [API review evidence](evaluations/api-performance-review/VALIDATION.md): synthetic cases, executable fixture checks, and explicit limits. The earlier baseline comparison did not establish an improvement over the baseline.
 - [Learning workflow evidence](evaluations/learn-from-task/VALIDATION.md): synthetic proposal, no-lesson, approved-update, and untrusted-input cases.
+- [Documentation Update validation](evaluations/documentation-update/VALIDATION.md): scoped synthetic cases and limitations.
+- [Humanize Russian Text validation](evaluations/humanize-russian-text/VALIDATION.md): scoped synthetic cases and limitations.
 - [Security boundaries](SECURITY.md): access, source provenance, evaluation scope, and known limits. Skill instructions do not create a sandbox.
 
 To run local package checks and the seven API fixture tests:
