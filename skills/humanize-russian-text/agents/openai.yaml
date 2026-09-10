@@ -1,0 +1,4 @@
+interface:
+  display_name: "Humanize Russian Text"
+  short_description: "Natural Russian copy without changing the facts"
+  default_prompt: "Use $humanize-russian-text to rewrite this Russian text for its audience while preserving every factual constraint."

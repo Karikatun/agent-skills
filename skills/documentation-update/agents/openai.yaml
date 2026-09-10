@@ -1,0 +1,4 @@
+interface:
+  display_name: "Documentation Update"
+  short_description: "Keep documentation aligned with verified behavior"
+  default_prompt: "Use $documentation-update to synchronize the affected documentation with this implementation change."

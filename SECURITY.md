@@ -55,3 +55,7 @@ There is no overall OWASP certification or PASS. No new scanner was installed, n
 Review a release's instructions, references, and checksums before replacement. Archive checksums detect content changes but cannot authenticate a publisher if the archive and checksum are both replaced. The initial releases are not cryptographically signed.
 
 Remove only the selected installed skill folder to stop future discovery. An existing agent context may retain loaded instructions; start a fresh context when revoking those instructions matters. Removing a skill does not undo an earlier approved project edit.
+
+## Additional instruction-only releases — 2026-09-10
+
+Documentation Update and Humanize Russian Text were generalized from existing private workflows without copying private examples or external local word lists. Their installed folders contain no scripts or runtime dependencies. Three documentation cases covered authorized edits, clean evidence, and an unverified claim with hostile source text; four copy cases covered formal conditions, already-clear prose, uncertain results, and an embedded instruction. Independent evaluators received inputs without rubrics; the author checked outcomes and the only two authorized document edits. See each owning validation record for limits. Declared-scope and synthetic-case checks passed; host enforcement, general injection resistance, and cross-platform behavior remain NOT VERIFIED.
