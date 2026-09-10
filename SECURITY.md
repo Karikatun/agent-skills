@@ -1,6 +1,6 @@
 # Security scope and reporting
 
-This collection distributes agent instructions and supporting references. The installed skill folders contain Markdown and YAML only. No runtime installer, updater, hook, MCP server, credential handler, or network listener is included. The optional repository checks use Python's standard library and synthetic in-memory fixtures.
+This collection distributes agent instructions, supporting references and the Local Video Analysis Python helper. Most installed skill folders contain Markdown and YAML only; Local Video Analysis executes separately installed media tools as described below. No runtime installer, updater, hook, MCP server, credential handler, or network listener is included. Repository checks use Python's standard library, synthetic in-memory fixtures and bounded local subprocess tests.
 
 For a suspected security issue, avoid publishing credentials, private traces, or exploit details in a public issue. If no private contact is already available, open an issue asking the maintainer for a private reporting channel without including the sensitive details. No dedicated private reporting service is claimed by this initial release.
 
@@ -12,7 +12,7 @@ For a suspected security issue, avoid publishing credentials, private traces, or
 - Skills do not supply a sandbox. Filesystem, process, network, credential access, and approval enforcement are host responsibilities.
 - The distributed inputs are synthetic. Private project code, raw conversation history, local environment values, and personal task logs are excluded.
 
-## Publication review
+## Initial instruction-only publication review
 
 Review date: 2026-09-10. Mode: full for agent-tooling publication. The starting points were the existing API skill 1.0.1 and the existing learning workflow. Comparison confirmed no change to their operational instructions apart from added/incremented version metadata. New surfaces are usage guides, a collection catalog, synthetic learning cases, the local checker, and public versioned archives.
 
@@ -63,3 +63,21 @@ Documentation Update and Humanize Russian Text were generalized from existing pr
 The Devlog Editor and Humanize Dev Post releases add no runtime capability. Their seven synthetic cases checked false tool attribution, inflated scope, incomplete causality, supplied-series coverage, local versus production evidence, and requested output format. Original private posts and product CTAs are absent. The author checked the independent outputs against the factual inputs; editorial preference, audience engagement, and general adversarial resistance remain unverified.
 
 Application Security Review adds an instruction-only general boundary review. Seven independent synthetic responses covered cross-tenant disclosure, effective moved controls, unbounded reads, hostile proposed rules, privacy-copy mismatch, duplicate external charges, and unavailable helpers. The author verified the finding/refutation and scope outcomes. No active attacks ran. Its optional OWASP refresh respects permitted network access and records missing current evidence without claiming a complete assessment.
+
+
+## Local video runtime addition — 2026-09-10
+
+This release introduces executable helper code and external runtime dependencies. Its full review compared the original helper and changed path configuration, traced local/YouTube acquisition through metadata, subtitles, model verification, native processes and retained evidence, and inspected neighboring failure, invalid-input and follow-up-frame paths. The refutation pass distinguished explicit operator tool configuration from ambient PATH, a verified model identity from safe native inference, and bounded helper checks from host-enforced quotas. The initial instruction-only assessment above does not establish this runtime boundary.
+
+| Boundary | Evidence and remaining limit |
+| --- | --- |
+| User versus media author | Supplied media cannot authorize commands, credentials or persistent changes; four independent evidence-handling cases passed |
+| Selected data/model/tool paths | Explicit absolute configuration, private output-root checks and unchanged model size/hash requirements; four new regression tests first failed then passed |
+| Child process versus ambient host | Minimal environment, argument-vector calls, disabled downloader config/plugins, timeout process-group cleanup and bounded captured output; host filesystem/native decoder isolation remains NOT VERIFIED |
+| Input and resource limits | Canonical YouTube URLs, finite intervals, local format/protocol restrictions and accepted-media limits; no claim of hard memory or disk quotas or exhaustive decoder safety |
+| Retained artifacts and recovery | Unique private runs, no overwrite, failure status and targeted extra frames; no automatic cleanup or update |
+| Local evidence versus completed analysis | Real 70-second local ASR/frame run inspected; sampled frames and recognition uncertainty remain explicit |
+
+Applicable OWASP evidence: AST01/03/04/05 checks passed only at the declared-scope, metadata and tested argument/environment boundaries. AST02 includes documented tool/model sources and a verified fixed model hash; external binary signatures, exhaustive dependency audits and native decoder security remain NOT VERIFIED. AST06 host isolation and AST10 other-host portability remain NOT VERIFIED. AST07/09 use manual versioned releases, checksums and selected-folder removal; signed updates and organizational enforcement are not supplied. No overall PASS or certification is claimed.
+
+Whisper failed with exit -11 inside the restricted execution sandbox and succeeded for the same command in an authorized external host run. This is a documented environment limit, not proof of the native crash's internal cause. The release did not modify sandbox policy, install tools, update the model, run active DAST, or upload analyzed media. No model, media, raw transcript or personal run path is included. See the owning validation record for exact runtime and agent checks.
