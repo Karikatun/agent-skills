@@ -23,6 +23,8 @@ The collection uses English instructions and replies in the user's language. Eac
 
 ## Install one skill
 
+[Installation guide for 12 agents](INSTALLATION.md): personal and project directories, invocation, and discovery checks for Codex, Claude Code, Cursor, Copilot, Gemini CLI, Cascade, Cline, OpenCode, Amp, Kiro, Antigravity, and Kilo Code.
+
 ### Download only that skill
 
 Choose one archive below. Each ZIP contains one skill folder, not the repository. You do not need Git or a clone.
@@ -53,9 +55,9 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 
    On Linux, use `sha256sum -c` with the same checksum filename. On Windows, use PowerShell `Get-FileHash .\api-performance-review-1.0.2.zip -Algorithm SHA256` (or the learning ZIP) and compare the hash with the text in its `.sha256` file.
 3. Extract the ZIP and read the skill's `README.md` and `SKILL.md`.
-4. Copy the extracted folder, keeping all its contents, into your agent's supported skills directory. For manual personal installation in Codex, current documentation specifies `$HOME/.agents/skills`; on Windows, `.agents/skills` inside your user profile. Create the parent directory if it does not exist.
+4. Copy the extracted folder, keeping all its contents, into your agent's [supported skills directory](INSTALLATION.md#agent-directories). For manual personal installation in Codex, current documentation specifies `$HOME/.agents/skills`; on Windows, `.agents/skills` inside your user profile. Create the parent directory if it does not exist.
 
-For example, installing API Performance Review should produce:
+For example, a manual personal installation in Codex should produce:
 
 ```text
 ~/.agents/skills/api-performance-review/SKILL.md
@@ -79,7 +81,7 @@ These links select fixed release tags. The installer chooses its supported perso
 
 Only the selected skill is installed. The installer may temporarily fetch a repository archive; choose the ZIP method above if you want to download only one skill's files. The collection has no custom installer or automatic updater.
 
-### Use the installed skill
+### Use the installed skill in Codex
 
 ```text
 Use $api-performance-review to review GET /orders. Do not change code.
@@ -89,7 +91,7 @@ Use $api-performance-review to review GET /orders. Do not change code.
 Use $learn-from-task to review the completed task and propose useful lessons. Do not write them yet.
 ```
 
-Restart the client if the installed skill is not discovered. The [OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills), checked on 2026-09-10, describes local skill directories and installing from other repositories. OpenAI recommends plugins for installable distribution; this collection currently provides standalone folders and archives. No plugin-directory listing or installation in every agent host is claimed.
+For other agents, use the [invocation and discovery instructions](INSTALLATION.md#agent-directories). Restart the client if the installed skill is not discovered. The [OpenAI skill documentation](https://learn.chatgpt.com/docs/build-skills), checked on 2026-09-10, describes local skill directories and installing from other repositories. OpenAI recommends plugins for installable distribution; this collection currently provides standalone folders and archives. No plugin-directory listing or installation in every agent host is claimed.
 
 ## Scope and evidence
 
