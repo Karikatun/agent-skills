@@ -14,6 +14,7 @@
 | [Humanize Russian Text](skills/humanize-russian-text/README.md) | 1.0.0 | Сделать русский текст естественным, сохранив факты, условия и тон |
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Проверить факты, причинность, хронологию и роль поста в серии |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Превратить технические заметки в понятный пост без выдуманных фактов |
+| [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Проверить конкретные угрозы, действующие меры защиты и пробелы в доказательствах |
 
 Инструкции написаны на английском; ответы — на языке пользователя. Навыки не зависят друг от друга, не требуют MCP-серверов, API-ключей, пакетов или отдельных подписок помимо выбранного агента. Необязательные проверочные скрипты используют Python 3.9+ и стандартную библиотеку.
 
@@ -31,6 +32,7 @@
 | Humanize Russian Text 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
 | Devlog Editor 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip.sha256) |
 | Humanize Dev Post 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip.sha256) |
+| Application Security Review 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip.sha256) |
 
 1. Скачай выбранный ZIP и файл контрольной суммы в одну папку.
 2. Перед распаковкой проверь контрольную сумму. В macOS выполни подходящую команду из этой папки:
@@ -93,6 +95,7 @@
 - [Humanize Russian Text](evaluations/humanize-russian-text/VALIDATION.md): проверенные примеры и ограничения.
 - [Devlog Editor](evaluations/devlog-editor/VALIDATION.md): проверенные примеры и ограничения.
 - [Humanize Dev Post](evaluations/humanize-dev-post/VALIDATION.md): проверенные примеры и ограничения.
+- [Application Security Review](evaluations/application-security-review/VALIDATION.md): проверенные примеры и ограничения.
 - [Границы безопасности](SECURITY.md): доступ, происхождение, объём проверки и оставшиеся ограничения. Инструкция навыка не создаёт песочницу.
 
 Локальная проверка состава пакетов и семи API-примеров:

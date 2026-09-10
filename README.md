@@ -14,6 +14,7 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 | [Humanize Russian Text](skills/humanize-russian-text/README.md) | 1.0.0 | Natural Russian copy with preserved facts, conditions, and audience register |
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Audit facts, causal links, chronology and the contribution of development posts |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Readable development stories with faithful facts and requested format |
+| [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Trace concrete security defects, current controls and evidence gaps |
 
 These skills are instruction-only, written in English, and answer in the user's language. They require no other skill, package, MCP server, subscription beyond the chosen agent host, or API key. Optional evaluation scripts use Python 3.9+ and its standard library.
 
@@ -31,6 +32,7 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 | Humanize Russian Text 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
 | Devlog Editor 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip.sha256) |
 | Humanize Dev Post 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip.sha256) |
+| Application Security Review 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/application-security-review-v1.0.0/application-security-review-1.0.0.zip.sha256) |
 
 1. Download the chosen ZIP and its checksum file into the same folder.
 2. Verify the checksum before extraction. On macOS, run the appropriate command from that folder:
@@ -93,6 +95,7 @@ The workflows do not depend on a particular application language or framework. H
 - [Humanize Russian Text validation](evaluations/humanize-russian-text/VALIDATION.md): scoped synthetic cases and limitations.
 - [Devlog Editor](evaluations/devlog-editor/VALIDATION.md): scoped evaluation and limitations.
 - [Humanize Dev Post](evaluations/humanize-dev-post/VALIDATION.md): scoped evaluation and limitations.
+- [Application Security Review](evaluations/application-security-review/VALIDATION.md): scoped evaluation and limitations.
 - [Security boundaries](SECURITY.md): access, source provenance, evaluation scope, and known limits. Skill instructions do not create a sandbox.
 
 To run local package checks and the seven API fixture tests:
