@@ -12,6 +12,8 @@
 | [Learn from Task](skills/learn-from-task/README.md) | 1.0.0 | Извлечь полезные уроки из завершённой задачи и предложить, где их закрепить, прежде чем что-либо записывать |
 | [Documentation Update](skills/documentation-update/README.md) | 1.0.0 | Сверить документацию с реализацией и исправить неподтверждённые обещания |
 | [Humanize Russian Text](skills/humanize-russian-text/README.md) | 1.0.0 | Сделать русский текст естественным, сохранив факты, условия и тон |
+| [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Проверить факты, причинность, хронологию и роль поста в серии |
+| [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Превратить технические заметки в понятный пост без выдуманных фактов |
 
 Инструкции написаны на английском; ответы — на языке пользователя. Навыки не зависят друг от друга, не требуют MCP-серверов, API-ключей, пакетов или отдельных подписок помимо выбранного агента. Необязательные проверочные скрипты используют Python 3.9+ и стандартную библиотеку.
 
@@ -27,6 +29,8 @@
 | Learn from Task 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip.sha256) |
 | Documentation Update 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip.sha256) |
 | Humanize Russian Text 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
+| Devlog Editor 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/devlog-editor-v1.0.0/devlog-editor-1.0.0.zip.sha256) |
+| Humanize Dev Post 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-dev-post-v1.0.0/humanize-dev-post-1.0.0.zip.sha256) |
 
 1. Скачай выбранный ZIP и файл контрольной суммы в одну папку.
 2. Перед распаковкой проверь контрольную сумму. В macOS выполни подходящую команду из этой папки:
@@ -87,6 +91,8 @@
 - [Извлечение уроков](evaluations/learn-from-task/VALIDATION.md): предложение изменений, отсутствие полезного урока, уже одобренное изменение и недоверенный входной текст.
 - [Documentation Update](evaluations/documentation-update/VALIDATION.md): проверенные примеры и ограничения.
 - [Humanize Russian Text](evaluations/humanize-russian-text/VALIDATION.md): проверенные примеры и ограничения.
+- [Devlog Editor](evaluations/devlog-editor/VALIDATION.md): проверенные примеры и ограничения.
+- [Humanize Dev Post](evaluations/humanize-dev-post/VALIDATION.md): проверенные примеры и ограничения.
 - [Границы безопасности](SECURITY.md): доступ, происхождение, объём проверки и оставшиеся ограничения. Инструкция навыка не создаёт песочницу.
 
 Локальная проверка состава пакетов и семи API-примеров:
