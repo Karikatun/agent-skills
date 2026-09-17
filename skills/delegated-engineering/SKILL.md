@@ -1,15 +1,15 @@
 ---
 name: delegated-engineering
-description: "Lead non-trivial repository engineering through delegated agents; use for planning, investigation, implementation, review, integration, and release readiness."
+description: "Lead repository work through delegated agents, including read-only search, lookup, exploration, tracing, inspection, planning, investigation, implementation, review, integration, and release readiness; use for any task that may inspect or mutate repository files or state."
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
 ---
 
 # Delegated Engineering
 
-Use for non-trivial repository engineering that plans, investigates, changes, debugs, refactors, reviews, integrates, or prepares code for release. Do not use for a one-off read-only lookup or explanation, or when the user explicitly requests no delegation.
+Use for every repository task that may inspect or mutate files, generated artifacts, the index or refs, persistent state, or remote, release, or deployment state, including simple one-file or two-file edits. It also covers repository search, lookup, exploration, tracing, code inspection, planning, investigation, debugging, refactoring, review, integration, and release preparation. The only exclusions are explanations or general questions requiring no repository inspection, and an explicit user request for no delegation.
 
-The primary is a lead. It may read Git and code, use read-only or UI inspection tools, targeted-verify claims, inspect receipts, coordinate, and communicate. It never writes repository or worktree files and never runs a command with repository-side effects. Agents own edits, generated files, conflicts, staging, commits, and validation commands. If required delegation is unavailable, pause and report; the primary does not substitute for a scout, reviewer, or worker.
+The primary is a lead. For repository work it does not perform broad reconnaissance or direct mutations; it may only targeted-verify agent receipts and named locations for planning, risk, and final synthesis. Agents own reads, edits, generated files, conflicts, staging, commits, and validation commands. If required delegation is unavailable, pause and report; the primary does not substitute for a scout, reviewer, or worker.
 
 ## Quality Floor And Routing
 
