@@ -6,6 +6,8 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 
 ## Available skills
 
+Delegated Engineering source and latest published release are 2.1.0.
+
 | Skill | Version | Use it for |
 | --- | --- | --- |
 | [API Performance Review](skills/api-performance-review/README.md) | 1.0.2 | Trace request cost, scaling, retries, caching, and failure behavior; distinguish defects from missing evidence |
@@ -15,7 +17,7 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Audit facts, causal links, chronology and the contribution of development posts |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Readable development stories with faithful facts and requested format |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Trace concrete security defects, current controls and evidence gaps |
-| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.0.0 | Lead every repository task, including read-only inspection and trivial edits, while delegated agents own the work |
+| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.1.0 | Lead every repository task, including read-only inspection and trivial edits, while delegated agents own the work |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Prepare local speech and timestamped frame evidence from videos |
 | [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Apply a focused Clean Code lens without mechanical rules or rewrites |
 | [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Assess boundaries and dependency direction against real change costs |
@@ -33,7 +35,7 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 | Skill | Archive | Integrity check |
 | --- | --- | --- |
 | API Performance Review 1.0.2 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip.sha256) |
-| Delegated Engineering 2.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.0.0/delegated-engineering-2.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.0.0/delegated-engineering-2.0.0.zip.sha256) |
+| Delegated Engineering 2.1.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.1.0/delegated-engineering-2.1.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.1.0/delegated-engineering-2.1.0.zip.sha256) |
 | Learn from Task 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip.sha256) |
 | Documentation Update 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip.sha256) |
 | Humanize Russian Text 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
