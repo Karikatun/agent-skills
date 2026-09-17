@@ -1,0 +1,7 @@
+interface:
+  display_name: "Delegated Engineering"
+  short_description: "Lead repo work; agents make every edit"
+  default_prompt: "Use $delegated-engineering: agents make edits while the primary stays read-only."
+
+policy:
+  allow_implicit_invocation: true
