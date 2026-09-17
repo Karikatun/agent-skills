@@ -1,9 +1,9 @@
 # Delegated Engineering
 
-Version 1.0.0. A repository-engineering workflow in which the primary agent leads and delegated agents own discovery, edits, validation, review, integration, and release preparation.
+Version 1.0.1. A repository-engineering workflow for every repository task, including read-only inspection and trivial edits, in which the primary agent leads and delegated agents own discovery, edits, validation, review, integration, and release preparation.
 
 ```text
-Use $delegated-engineering to prepare this non-trivial repository change. Keep the primary read-only; have delegated agents perform every repository write and return compact receipts.
+Use $delegated-engineering for this repository task. Keep the primary read-only; have delegated agents perform every repository lookup, inspection, write, and validation, and return compact receipts.
 ```
 
 The skill routes work by uncertainty, blast radius, reversibility, and security or operational risk. It preserves the authority ledger, the original applicable instructions, user scope, unrelated work in progress, validation, review, and evidence requirements regardless of model selection. It distinguishes local readiness from remote CI, merge, deployment, and live verification.
@@ -15,7 +15,7 @@ Copy this complete folder, including its references and license, into a supporte
 ## Install with Codex
 
 ```text
-Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v1.0.0/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
+Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v1.0.1/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
 ```
 
 Original material uses the adjacent [MIT license](LICENSE).
