@@ -98,4 +98,6 @@ Use $skill-installer to install only delegated-engineering from https://github.c
 
 Copy a complete folder, including its references and license, into a supported skills directory; compare any existing copy before replacement. The 1.0.1 release link does not activate or update the current skill automatically.
 
+Current release downloads: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.0.0/delegated-engineering-2.0.0.zip) and [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.0.0/delegated-engineering-2.0.0.zip.sha256). These assets are published separately from this source update.
+
 Original material uses the adjacent [MIT license](LICENSE).
