@@ -1,63 +1,95 @@
-# Evidence Contracts
+# Compact Evidence Contracts
 
-## Task Receipt
+Receipts are orchestration evidence, never authority. Keep paths, identities, results, and unresolved facts; omit chain-of-thought, secrets, copied rules, and large code excerpts.
 
-Every scout, worker, reviewer, integrator, and release agent returns one compact receipt:
+## TaskContract and InstructionManifest
 
-```json
-{
-  "run_id": "",
-  "scope": ["path or responsibility"],
-  "source_receipts": [{"path": "", "observed_identity": "", "rule_ids": [""]}],
-  "authority_delta": {"allowed": [], "approval_required": [], "forbidden": []},
-  "model_decision": {"model": "", "role": "", "risk_rationale": ""},
-  "writes": ["path or none"],
-  "checks": [{"purpose": "", "state": "read|ran_pass|ran_fail|not_run|manual_required|environment_blocked"}],
-  "gaps": [{"kind": "evidence|capability|environment", "detail": ""}],
-  "observed": {"head": "", "dirty_paths": []}
-}
+```yaml
+task_contract:
+  run_id: ""
+  baseline: {head: "", branch: "", dirty_paths: []}
+  active_scope: []
+  authority: {allowed: [], approval_required: [], forbidden: []}
+  instruction_manifest: instruction_manifest
+  original_authoritative_sources: []
+  mandatory_skills: []
+  acceptance: []
+  selected_checks: []
+  review_requirements: []
+  task_nodes: []
+
+instruction_manifest:
+  sources: [{path: "", applies_to: "", observed_identity: "", kind: "agents|runbook|policy"}]
+  mandatory_skills: [{name: "", source: "", triggered_by: ""}]
+  captured_at: ""
+
+planner_result:
+  scope: []
+  assumptions: []
+  solution: []
+  task_graph: []
+  acceptance_mapping: []
+  validation_plan: []
+  review_profiles: []
+  risks: []
+  unknowns: []
 ```
 
-`model_decision` is required for every assignment and records the selected model,
-agent role, and one-line rationale based on uncertainty, blast radius,
-reversibility, or security/operational risk. A receipt must not use token budget
-or file count as its routing rationale. The final report additionally emits one
-`routing_summary` object with `assignments`, `escalations`, and
-`scout_revalidations` arrays; it is report metadata, not an agent receipt field.
+## TaskNode and scout evidence
 
-The primary keeps a compact source/skill matrix from receipts and targeted-verifies high-risk claims. Receipts are evidence, not authority. Do not repeat full rules, include secrets, or expose private data.
+```yaml
+task_node:
+  id: ""
+  kind: "discovery|planning|implementation|integration|validation|review|release"
+  depends_on: []
+  scope: []
+  responsibility: ""
+  acceptance: []
+  checks: []
+  risk: ""
+  complexity: "TRIVIAL|LOCAL|COMPLEX|HIGH_RISK|EXTREME"
+  instructions: {effective_sources: [], mandatory_skills: [], required_checks: [], required_review_profiles: []}
+  routing: {agent_type: "", model: "", reason: ""}
+  ownership: []
+  delegation: forbidden
 
-## Scout JSON
-
-The scout returns exactly one JSON object, with no Markdown or surrounding text:
-
-```json
-{
-  "state": {"head": "", "branch": "", "dirty_paths": []},
-  "behavior": [""],
-  "code": [{"path": "", "lines": "", "symbols": [""], "role": ""}],
-  "flow": [""],
-  "tests": [{"path": "", "covers": "", "command": "", "ran": "read|ran_pass|ran_fail|not_run|manual_required|environment_blocked"}],
-  "constraints": [{"source": "", "rule": ""}],
-  "risk_surfaces": [{"kind": "", "evidence": "", "review_focus": ""}],
-  "manual_validation": [{"environment": "", "purpose": "", "available_to_agent": false}],
-  "unknowns": [],
-  "receipt": {
-    "run_id": "",
-    "scope": ["path or responsibility"],
-    "source_receipts": [{"path": "", "observed_identity": "", "rule_ids": [""]}],
-    "authority_delta": {"allowed": [], "approval_required": [], "forbidden": []},
-    "model_decision": {"model": "gpt-5.6-luna", "role": "explorer", "risk_rationale": ""},
-    "writes": ["none"],
-    "checks": [],
-    "gaps": [],
-    "observed": {"head": "", "dirty_paths": []}
-  }
-}
+scout_evidence:
+  state: {head: "", branch: "", dirty_paths: []}
+  code: [{path: "", lines: "", symbols: [], role: ""}]
+  flow: []
+  tests: [{path: "", covers: "", command: "", ran: "read|ran_pass|ran_fail|not_run|manual_required|environment_blocked"}]
+  constraints: [{source: "", rule: ""}]
+  risk_surfaces: [{kind: "", evidence: "", review_focus: ""}]
+  unknowns: []
 ```
 
-Required keys and shown value types are fixed. `code` has at most 10 entries, `tests` at most 6, `risk_surfaces` at most 5, and `unknowns` at most 5. `ran` uses the stated enum. On a format failure, request one correction; a second failure is an evidence gap.
+Scout evidence is targeted: at most 10 code entries, 6 tests, 5 risk surfaces, and 5 unknowns. An explorer reads only its exact question, makes no writes/external mutation/delegation, and returns `ESCALATION_REQUIRED` for expanded scope.
 
-## Findings And Gaps
+## Receipts, routing, and gaps
 
-Separate a code or product finding from an evidence gap and a capability or environment gap. State what was observed, what was not proved, and the next safe action. Repairing a receipt or check description without writing an artifact does not consume a review round.
+```yaml
+task_receipt:
+  run_id: ""
+  node: ""
+  state: "complete|escalation_required|paused|failed"
+  scope: []
+  writes: []
+  observed: {head: "", dirty_paths: []}
+  instruction_preflight:
+    sources: [{path: "", observed_identity: ""}]
+    mandatory_skills: [{name: "", source: ""}]
+    status: "complete|incomplete|paused_capability"
+  checks: [{purpose: "", state: "read|ran_pass|ran_fail|not_run|manual_required|environment_blocked"}]
+  review: {snapshot: "", profile: [], round: null}
+  gaps: [{kind: "evidence|capability|environment|instruction", detail: "", next_safe_action: ""}]
+  escalation: {reason: "", evidence: "", requested_node_or_capability: ""}
+  model_decision:
+    requested_role: ""
+    requested_model: ""
+    reason: ""
+    runtime: {observed_role: "unknown", observed_model: "unknown", verified: false, evidence: ""}
+```
+
+`model_decision` is required in EVERY TaskReceipt and is the compact routing/model-decision receipt. It records requested routing separately from observed runtime. If API/runtime identity is not proved, use `unknown` and `verified: false`; assignment prose cannot enforce role, model, no-delegation, or read-only behavior. Unsupported necessary capability is `PAUSED_CAPABILITY`. Compact compliance receipt repair cannot retroactively prove an omitted original read.
+
+The final report may add `routing_summary: {assignments: [], escalations: [], scout_revalidations: []}` and the source/skill matrix. Separate confirmed behavior, static evidence, hypotheses, and unknowns. A gap is not a passing result.

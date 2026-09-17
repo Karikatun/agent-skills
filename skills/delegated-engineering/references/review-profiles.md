@@ -1,17 +1,21 @@
-# Review Profiles And Immutable Rounds
+# Adaptive Review Profiles and Immutable Rounds
 
-Select only profiles supported by active scope: client/server trust; authentication/API; concurrency/async; persistence/transactions/migrations; external I/O/errors; lifecycle/resources; types/contracts; UI/accessibility/responsive/rendered flow; operations/release/data preservation; or agent-skill/supply-chain/install-update. The applicable security skill selects the current OWASP source for the last profile.
+Review is a risk control, not a universal ceremony. Select only profiles relevant to active scope: client/server trust; authentication/API; concurrency/async; persistence/transactions/migrations; external I/O/errors; lifecycle/resources; types/contracts; UI/accessibility/rendered flow; operations/release/data preservation; or agent-skill/supply-chain/install/update. For agent tooling, use the applicable security skill and its current official-source procedure.
 
-## Whole-Scope Review
+| Level | When | Required flow |
+| --- | --- | --- |
+| LOW | trivial, deterministic, reversible, no mandatory independent review | worker check/validation is sufficient |
+| MEDIUM | bounded behavior/change risk or a controlling rule requires independence | fresh Luna read-only review of final scope |
+| HIGH | trust/security, concurrency, persistence, migration, shared contract, or high operational risk | specialist read-only profile review where applicable, then fresh whole-scope review |
 
-A review round is one immutable snapshot. A fresh Luna, write-capable worker-role reviewer with `model: gpt-5.6-luna` and `fork_turns: none` reads originals and reviews `base..HEAD`, staged, unstaged, and relevant untracked changes, separating task scope from preserved WIP. Give it the TaskContract, final acceptance, and selected profiles, but no prior review conclusions; then run independent Terra or Sol specialists only when the profile or risk requires them. The quality floor remains model-independent; route specialists by uncertainty, blast radius, reversibility, and security or operational risk.
+Do not run duplicate reviewers to vote. Add a specialist only for a distinct justified profile or capability.
 
-The round counter increments only when the fresh whole-scope reviewer completes. A failed spawn is not a round. For a read-only review, report findings and finish at `EVIDENCE_COMPLETE`; no reviewer fixes or loop occur.
+## Immutable review flow
 
-For an authorized mutation, an in-scope finding is fixed and validated by that same reviewer, then a new immutable snapshot gets a new fresh reviewer. Any write invalidates earlier clean evidence. An out-of-scope finding pauses at `PAUSED_AUTHORITY`; do not edit or route it as implicitly authorized.
+A reviewer is read-only. It independently reads original applicable instructions/skills, receives the final snapshot, acceptance, selected profiles, relevant scope, and compact receipts—not prior review conclusions—and reports findings and instruction compliance. It does not edit code, fix a finding, stage, integrate, or delegate.
 
-## Limits And Replanning
+For a whole-scope round use a fresh Luna reviewer with `fork_turns: none` where supported; route specialist reviewers to Luna/Terra/Sol by the profile risk, not by file count. Review the immutable assigned snapshot while separating task scope from preserved WIP. Record snapshot identity and increment the whole-scope counter only when the fresh whole-scope review completes.
 
-At most five whole-scope rounds run per `run_id`. A clean fifth round may reach `LOCAL_READY`. A fix or unresolved finding in round five reaches `BLOCKED_REVIEW_LIMIT` and remains unreviewed. Replanning continues the same run, budget, history, and counter. Trigger replanning after the same defect class recurs after a claimed fix, or after two rounds without primary-signal improvement.
+Finding -> primary creates a separate authorized fix TaskNode -> worker fixes -> validator validates -> fresh reviewer inspects the new snapshot. Any write after a clean review invalidates that clean evidence. An out-of-scope finding is `PAUSED_AUTHORITY`, not an implicit repair.
 
-After `BLOCKED_REVIEW_LIMIT`, restart only on new explicit user instruction, a new `run_id`, and a materially changed plan; preserve earlier history. Unresolved non-authority work reaches `BLOCKED_UNRESOLVED`. A receipt-only repair without artifact writes does not consume a round.
+At most five whole-scope rounds occur per `run_id`. A clean fifth round may reach `LOCAL_READY`; a defect/unresolved finding in round five is `BLOCKED_REVIEW_LIMIT`. Restart only with new explicit user direction, a new `run_id`, and a materially changed plan. Receipt-only repairs do not consume a round. Reviewers treat missing applicable-source reads, missed mandatory skills, required checks, security review, architecture boundaries, or nested `AGENTS.md` as findings; an instruction gap that could affect work invalidates the affected evidence and requires reassign/revalidate/review.
