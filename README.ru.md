@@ -15,6 +15,7 @@
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Проверить факты, причинность, хронологию и роль поста в серии |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Превратить технические заметки в понятный пост без выдуманных фактов |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Проверить конкретные угрозы, действующие меры защиты и пробелы в доказательствах |
+| [Delegated Engineering](skills/delegated-engineering/README.md) | 1.0.0 | Вести нетривиальную работу в репозитории, пока все правки и проверки делают делегированные агенты |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Разобрать видео по локальной расшифровке и кадрам с таймкодами |
 | [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Оценить код через принципы Clean Code без механического рефакторинга |
 | [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Оценить границы и зависимости с учётом реальной стоимости изменений |

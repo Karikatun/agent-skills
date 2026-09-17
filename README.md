@@ -15,6 +15,7 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Audit facts, causal links, chronology and the contribution of development posts |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Readable development stories with faithful facts and requested format |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Trace concrete security defects, current controls and evidence gaps |
+| [Delegated Engineering](skills/delegated-engineering/README.md) | 1.0.0 | Lead non-trivial repository work while delegated agents own every edit and validation |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Prepare local speech and timestamped frame evidence from videos |
 | [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Apply a focused Clean Code lens without mechanical rules or rewrites |
 | [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Assess boundaries and dependency direction against real change costs |
