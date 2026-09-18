@@ -6,7 +6,7 @@
 
 ## Доступные навыки
 
-Исходники Delegated Engineering и последний опубликованный релиз имеют версию 2.1.0.
+Исходники Delegated Engineering имеют версию 2.2.0; последний опубликованный релиз — версии 2.2.0.
 
 | Навык | Версия | Для чего |
 | --- | --- | --- |
@@ -17,7 +17,7 @@
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Проверить факты, причинность, хронологию и роль поста в серии |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Превратить технические заметки в понятный пост без выдуманных фактов |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Проверить конкретные угрозы, действующие меры защиты и пробелы в доказательствах |
-| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.1.0 | Вести любую работу в репозитории, включая чтение и простые правки, пока делегированные агенты выполняют задачу |
+| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.2.0 | Вести любую работу в репозитории, включая чтение и простые правки, пока делегированные агенты выполняют задачу |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Разобрать видео по локальной расшифровке и кадрам с таймкодами |
 | [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Оценить код через принципы Clean Code без механического рефакторинга |
 | [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Оценить границы и зависимости с учётом реальной стоимости изменений |
@@ -35,7 +35,7 @@
 | Навык | Архив | Проверка целостности |
 | --- | --- | --- |
 | API Performance Review 1.0.2 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip.sha256) |
-| Delegated Engineering 2.1.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.1.0/delegated-engineering-2.1.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.1.0/delegated-engineering-2.1.0.zip.sha256) |
+| Delegated Engineering 2.2.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.2.0/delegated-engineering-2.2.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.2.0/delegated-engineering-2.2.0.zip.sha256) |
 | Learn from Task 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip.sha256) |
 | Documentation Update 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip.sha256) |
 | Humanize Russian Text 1.0.0 | [Скачать ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |

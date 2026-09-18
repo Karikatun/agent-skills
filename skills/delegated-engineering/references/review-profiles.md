@@ -1,21 +1,17 @@
-# Adaptive Review Profiles and Immutable Rounds
+# Adaptive review profiles
 
-Review is a risk control, not a universal ceremony. Select only profiles relevant to active scope: client/server trust; authentication/API; concurrency/async; persistence/transactions/migrations; external I/O/errors; lifecycle/resources; types/contracts; UI/accessibility/rendered flow; operations/release/data preservation; or agent-skill/supply-chain/install/update. For agent tooling, use the applicable security skill and its current official-source procedure.
+Review is conditional risk control. Apply the core invariants in [SKILL.md](../SKILL.md); record review types only through [evidence contracts](evidence-contracts.md).
 
-| Level | When | Required flow |
+Select only relevant profiles: trust/auth/API, concurrency/async, persistence/migration, external I/O/errors, lifecycle/resources, types/contracts, UI/accessibility, operations/data preservation, or agent-skill/supply-chain/install/update. The latter uses the applicable security skill.
+
+| Level | When | Flow |
 | --- | --- | --- |
-| LOW | trivial, deterministic, reversible, no mandatory independent review | worker check/validation is sufficient |
-| MEDIUM | bounded behavior/change risk or a controlling rule requires independence | fresh Luna read-only review of final scope |
-| HIGH | trust/security, concurrency, persistence, migration, shared contract, or high operational risk | specialist read-only profile review where applicable, then fresh whole-scope review |
+| LOW | trivial, deterministic, reversible; no controlling independent-review rule | worker check/validation |
+| MEDIUM | bounded behavior risk or controlling independent-review rule | fresh Luna, read-only final-scope review |
+| HIGH | trust/security, concurrency, persistence/migration, shared contract, high operational risk | justified specialist read-only review, then fresh whole-scope review |
 
-Do not run duplicate reviewers to vote. Add a specialist only for a distinct justified profile or capability.
+Do not add duplicate reviewers to vote. A reviewer independently reads applicable originals, receives the immutable final snapshot, scope, acceptance, profiles, and compact receipts—not prior conclusions—and reports findings and compliance. It never writes, fixes, stages, integrates, or delegates.
 
-## Immutable review flow
+Finding -> authorized fix node -> same worker continuation only if scope, ownership, authority/skills, and risk are unchanged and independence is unnecessary; otherwise a fresh worker -> validation -> fresh re-review. No reviewer reuses implementation context after a write; any write invalidates clean review evidence. Out-of-scope findings pause for authority.
 
-A reviewer is read-only. It independently reads original applicable instructions/skills, receives the final snapshot, acceptance, selected profiles, relevant scope, and compact receipts—not prior review conclusions—and reports findings and instruction compliance, including attested mandatory rule IDs and unresolved material-rule evidence. It does not edit code, fix a finding, stage, integrate, or delegate. An attestation or structural ref match is not proof of enforcement. This is policy-level unless the runtime proves enforcement.
-
-For a whole-scope round use a fresh Luna reviewer with `fork_turns: none` where supported; route specialist reviewers to Luna/Terra/Sol by the profile risk, not by file count. Review requires `runtime_identity_requirement: required`. The primary-owned ledger records runtime-returned role/agent/session; the review TaskNode predeclares complete exact implementation-agent and prior-reviewer-agent sets, plus their corresponding session sets. The reviewer receipt's stable `ref`, rule bindings, reviewer agent/session, and all four sets must match those ledger/assignment facts; primary then requires reviewer agent != every implementation/prior-reviewer **agent**, and reviewer session != every implementation/prior-reviewer **session**. Never compare an agent ref to a session ref. The immutable raw snapshot digest, profile, round, and freshness/isolation context must also match. A mandatory `type: review` evidence item must exact-match its `(source, rule_id, ref, review)` to the reviewer receipt's binding and ref before it counts. Only that separately attributable review receipt can satisfy an independent gate. If identity/context isolation/freshness cannot be runtime-proved, record an evidence/capability gap rather than claiming independence. Record the round only when this evidence is complete.
-
-Finding -> primary creates a separate authorized fix TaskNode -> same worker continues only if scope/ownership/authority/skills/risk remain unchanged and independence is unnecessary; otherwise a fresh worker fixes -> validator validates -> fresh reviewer inspects the new snapshot. A reviewer never reuses implementation context, and no reviewer is reused after a write. Any write after a clean review invalidates that clean evidence. An out-of-scope finding is `PAUSED_AUTHORITY`, not an implicit repair.
-
-At most five whole-scope rounds occur per `run_id`. A clean fifth round may reach `LOCAL_READY`; a defect/unresolved finding in round five is `BLOCKED_REVIEW_LIMIT`. Restart only with new explicit user direction, a new `run_id`, and a materially changed plan. Receipt-only repairs do not consume a round. Reviewers treat missing applicable-source reads, missed mandatory skills, nonmatching immutable skill source refs/package surfaces, unbound or dynamic skill resources, unmatched observable refs, missing independent evidence for material authority/security/WIP rules, required checks, security review, architecture boundaries, or nested `AGENTS.md` as findings; an instruction gap that could affect work invalidates the affected evidence and requires reassign/revalidate/review.
+Count at most five completed whole-scope rounds per run. A clean fifth round may finish; a defect or unresolved issue in it is `BLOCKED_REVIEW_LIMIT`. A required review evidence ref must exactly match its bound rule, stable review ref, immutable digest, profile, and round; use the canonical content-complete digest semantics. Compare reviewer agent only with primary-ledger agent sets and reviewer session only with session sets. `ReviewEvidence.context` is proved only by primary-validated runtime refs; policy read-only remains mandatory. Otherwise record the limitation. Identity is required only for that claim.
