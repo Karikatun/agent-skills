@@ -7,7 +7,7 @@ Select only relevant profiles: trust/auth/API, concurrency/async, persistence/mi
 | Level | When | Flow |
 | --- | --- | --- |
 | LOW | trivial, deterministic, reversible; no controlling independent-review rule | worker check/validation |
-| MEDIUM | bounded behavior risk or controlling independent-review rule | fresh Luna, read-only final-scope review |
+| MEDIUM | bounded behavior risk or controlling independent-review rule | fresh GPT-6 Luna (`gpt-6-luna`), read-only final-scope review |
 | HIGH | trust/security, concurrency, persistence/migration, shared contract, high operational risk | justified specialist read-only review, then fresh whole-scope review |
 
 Do not add duplicate reviewers to vote. A reviewer independently reads applicable originals, receives the immutable final snapshot, scope, acceptance, profiles, and compact receipts—not prior conclusions—and reports findings and compliance. It never writes, fixes, stages, integrates, or delegates.

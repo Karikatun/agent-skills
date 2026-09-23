@@ -2,7 +2,7 @@
 name: delegated-engineering
 description: "Delegate repository engineering with risk-scaled evidence."
 metadata:
-  version: "2.2.0"
+  version: "2.3.0"
 ---
 
 # Delegated Engineering
@@ -27,8 +27,8 @@ Evaluate HARDENED before workflow: it routes FULL; FAST is STANDARD-only. Resolv
 
 | Path | Use when | Minimum flow |
 | --- | --- | --- |
-| `FAST_PATH` read-only | exact, low-risk location/behavior question | Luna `explorer` -> evidence answer |
-| `FAST_PATH` mutation | exact deterministic, reversible low-risk edit with no intended overlap with pre-existing dirty work; no shared/security/architecture/persistence/migration/concurrency concern or mandatory independent review | Luna worker -> focused check |
+| `FAST_PATH` read-only | exact, low-risk location/behavior question | GPT-6 Luna (`gpt-6-luna`) `explorer` -> evidence answer |
+| `FAST_PATH` mutation | exact deterministic, reversible low-risk edit with no intended overlap with pre-existing dirty work; no shared/security/architecture/persistence/migration/concurrency concern or mandatory independent review | GPT-6 Luna (`gpt-6-luna`) worker -> focused check |
 | `FULL` | uncertainty, non-local behavior, shared contract, material risk, integration, review, or release | load only the needed references below |
 
 FAST reads effective/nested `AGENTS.md`, mandatory skills, and needed refs/runbooks, not DE references. `FastAssignment`: `{mode, scope, baseline_state:{ref,identity}, instruction_sources:[{path,identity}], mandatory_skills:[{name,path,identity}], mandatory_rules:[{source,rule_id,kind:"attested|observable",check_refs?:[{ref,type:"check"}]}], acceptance, checks, model, reason_code}`. Complete FAST projections, not expanded types: attested omits refs; observable uses check refs only; any `independent_required` rule routes FULL. No graph. Dirty intent -> FULL/WIP; surprise -> pause. FULL: [planning](references/planning.md); [execution](references/execution.md) for mutation/integration/validation/release; [review profiles](references/review-profiles.md) for review; [evidence contracts](references/evidence-contracts.md) for expanded contracts/receipts/review/runtime identity/provenance; HARDENED loads it.
@@ -41,12 +41,11 @@ STANDARD is the default: source identity, effective instruction chain, mandatory
 
 | Model/role | Use |
 | --- | --- |
-| Luna / `explorer` | targeted discovery; deterministic edits, docs, focused checks, low-risk review |
-| Terra | bounded implementation/debugging; ordinary planning |
-| Sol | high uncertainty, architecture/shared contracts, auth/security, concurrency, migration, persistence, or operational risk |
-| Astra | rare, node-local escalation |
+| GPT-6 Luna (`gpt-6-luna`) / `explorer` | focused, deterministic, reversible discovery, edits, docs, checks, and low-risk review |
+| GPT-6 Sol (`gpt-6-sol`) | default for ordinary planning, bounded implementation and debugging; also complex, shared-contract, security, and high-risk work when sufficient |
+| GPT-6 Astra (`gpt-6-astra`) | rare, node-local escalation for the hardest work, only with concrete evidence that GPT-6 Sol is insufficient |
 
-Astra requires concrete evidence that cheaper models are insufficient. Preserve compatible explicit user model choice or pause.
+Preserve an explicit compatible user-pinned legacy model. If a requested model is unavailable or inadequate, pause and escalate; never silently substitute another model. Requested model and role are not proof of the runtime actually observed: preserve the existing runtime evidence contract. Model cost never lowers the required risk, review, or evidence floor.
 
 ## Instruction floor and boundaries
 

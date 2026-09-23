@@ -1,10 +1,10 @@
 # Delegated Engineering
 
-Source version **2.2.0**. The latest published archive and release are **2.2.0**; this checkout contains source changes that have not been independently verified as an installed or live release.
+Source version **2.3.0**. The latest published archive and release are **2.3.0**; this checkout contains source changes that have not been independently verified as an installed or live release.
 
 Delegated Engineering is a resource-aware workflow for repository work. A primary agent owns routing, scope, authority, and the final synthesis. Delegated agents do the bounded work: an explorer finds facts, a planner resolves a real design choice, a worker edits only its assignment, a validator checks acceptance, and a reviewer inspects without writing. Integrators and release agents are used only for separately authorized scopes.
 
-Compatibility note: v2.2 preserves the v2.1 behavioral floor, but its compact protocol is not wire-compatible with strict v2.1 parsers. Fields are omitted, renamed, or regrouped (for example routing, `completion_gate`, separate escalation, and review structures); consumers must migrate or normalize to v2.2 canonical shapes. This is a source-compatibility note only; the latest published release is 2.2.0.
+Compatibility note: v2.3 preserves the v2.2 workflow and protocol, including the v2.1 behavioral floor. The v2.2 compact protocol is not wire-compatible with strict v2.1 parsers. Fields are omitted, renamed, or regrouped (for example routing, `completion_gate`, separate escalation, and review structures); consumers must migrate or normalize to v2.2 canonical shapes. The v2.3 routing update does not change that protocol. This is a source-compatibility note only; the latest published release is 2.3.0.
 
 The aim is proportional process. A simple question or deterministic typo fix should be quick. A security boundary, migration, shared contract, skill update, or release needs stronger evidence and more independent control. The workflow never saves context by skipping applicable `AGENTS.md`, mandatory skills or runbooks, security constraints, acceptance checks, WIP protection, or a required review.
 
@@ -14,18 +14,19 @@ First resolve the applicable authority chain and current WIP. Then choose the mo
 
 | Path | When to use | Typical flow |
 | --- | --- | --- |
-| `FAST_PATH` read-only | Exact, low-risk location or behavior question | Luna explorer → evidence answer |
-| `FAST_PATH` mutation | Deterministic, reversible clean-target edit when no canonical `SKILL.md` FULL/HARDENED/mandatory-review trigger applies | Luna worker → focused check; otherwise FULL |
+| `FAST_PATH` read-only | Exact, low-risk location or behavior question | GPT-6 Luna (`gpt-6-luna`) explorer → evidence answer |
+| `FAST_PATH` mutation | Deterministic, reversible clean-target edit when no canonical `SKILL.md` FULL/HARDENED/mandatory-review trigger applies | GPT-6 Luna (`gpt-6-luna`) worker → focused check; otherwise FULL |
 | `FULL` | Uncertainty, non-local behavior, shared contract, material risk, integration, review, or release | Load only the references needed for the chosen work |
 
 The model routes by risk, not by request size:
 
 | Model | Best fit |
 | --- | --- |
-| Luna | Targeted discovery, docs, deterministic edits, focused checks, low-risk review |
-| Terra | Bounded implementation, debugging, ordinary planning |
-| Sol | Architecture, high uncertainty, shared contracts, auth/security, concurrency, migration, persistence, operations |
-| Astra | Rare, node-local escalation; concrete evidence must show cheaper models are insufficient |
+| GPT-6 Luna (`gpt-6-luna`) | Focused deterministic and reversible discovery, docs, edits, checks, low-risk review |
+| GPT-6 Sol (`gpt-6-sol`) | Default for ordinary planning, bounded implementation and debugging; also complex, shared-contract, security, and high-risk work when sufficient |
+| GPT-6 Astra (`gpt-6-astra`) | Rare node-local escalation for the hardest work, only with concrete evidence that GPT-6 Sol is insufficient |
+
+Preserve an explicit compatible user-pinned legacy model. If a requested model is unavailable or inadequate, pause and escalate; never silently substitute another model. Requested model and role are not proof of the runtime actually observed: preserve the existing runtime evidence contract. Model cost never lowers the required risk, review, or evidence floor.
 
 Reuse valid evidence or a safe worker continuation before creating another agent. Reuse is allowed only while scope, ownership, authority, skills, risk, and responsibility are unchanged. Record runtime identity only when a reuse or independent-review claim depends on it; if that identity is unproved, the claim is blocked. A fresh reviewer is required when independence matters, and any write invalidates clean review evidence.
 
@@ -54,7 +55,7 @@ Read-only lookup:
 Where is reconnect timeout defined?
 → resolve applicable instructions
 → FAST_PATH read-only
-→ Luna explorer
+→ GPT-6 Luna (`gpt-6-luna`) explorer
 → EVIDENCE_COMPLETE with the location and any limitation
 ```
 
@@ -63,7 +64,7 @@ Trivial mutation:
 ```text
 Fix a typo in a known component.
 → FAST_PATH mutation
-→ Luna worker edits the assigned file
+→ GPT-6 Luna (`gpt-6-luna`) worker edits the assigned file
 → focused check
 → LOCAL_READY
 ```
@@ -72,13 +73,13 @@ Local bug:
 
 ```text
 Reconnect loses state intermittently.
-→ targeted Luna exploration
-→ Terra implementation
+→ targeted GPT-6 Luna (`gpt-6-luna`) exploration
+→ GPT-6 Sol (`gpt-6-sol`) implementation
 → focused validation
 → review only if risk or an authoritative rule requires it
 ```
 
-For a high-risk auth change, the path may be explorer → Sol planning where needed → Terra/Sol implementation → validation → specialist security review → fresh whole-scope review. For a skill modification, HARDENED adds trusted pre-change identity, exact effective bytes, approval, complete distributable-tree binding (including metadata such as `agents/openai.yaml`), rollback-safe activation, installed-manifest comparison, and fresh-context verification. These branches are conditional, not a default tax.
+For a high-risk auth change, the path may be explorer → GPT-6 Sol (`gpt-6-sol`) planning where needed → GPT-6 Sol (`gpt-6-sol`) implementation → validation → specialist security review → fresh whole-scope review. Escalate a node to GPT-6 Astra (`gpt-6-astra`) only when concrete evidence shows GPT-6 Sol is insufficient. For a skill modification, HARDENED adds trusted pre-change identity, exact effective bytes, approval, complete distributable-tree binding (including metadata such as `agents/openai.yaml`), rollback-safe activation, installed-manifest comparison, and fresh-context verification. These branches are conditional, not a default tax.
 
 ## Install, validate, and use
 
@@ -104,7 +105,7 @@ Use $delegated-engineering to fix this known documentation typo and run the focu
 
 ## Source versus published release
 
-This README describes source **2.2.0**. The latest published download is **2.2.0**: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.2.0/delegated-engineering-2.2.0.zip) and [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.2.0/delegated-engineering-2.2.0.zip.sha256). The links are release references, not evidence that 2.2.0 has been installed or verified live.
+This README describes source **2.3.0**. The latest published download is **2.3.0**: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.3.0/delegated-engineering-2.3.0.zip) and [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.3.0/delegated-engineering-2.3.0.zip.sha256). The links are release references, not evidence that 2.3.0 has been installed or verified live.
 
 Delegated Engineering 1.0.1 also remains available as a fixed release tag for compatibility:
 
