@@ -90,7 +90,7 @@ The primary-private protected-state manifest records path/type/mode/size plus st
 
 Ledger identity is reuse/review-only: `reuse_from`/sets exact-match ledger/assignment. Required review matches ref/`RuleRef`/digest/profile/round and separate agent/session sets; assignment/receipt/ledger bind both refs. Only matching node sets `review`, worker/validator omit it. `context.proved` requires primary runtime refs; independence distinct identity/required context; missing proof = no closure; advisory `not_required`, policy read-only. Primary-generated `artifact` `manifest` is canonical content-complete assigned-scope snapshot: identity equals only `immutable_snapshot_digest`; `protected_state` exact-matches `TaskReceipt.final_state`/primary repository-wide state. Reviewer cannot generate/replace either. Snapshot covers assigned tracked/staged/unstaged/relevant untracked path/type/mode, bytes/hash, symlink target. Clean review needs both unchanged: scoped write changes snapshot; control/out-of-scope drift changes protected state; either invalidates.
 
-`escalation` exists only for `escalation_required` or node-local model escalation; GPT-6 Astra (`gpt-6-astra`) needs concrete evidence that GPT-6 Sol is insufficient. Completion is computed, not a snapshot/checklist.
+`escalation` exists only for `escalation_required` or node-local model escalation; GPT-6 Astra (`gpt-6-astra`) needs concrete evidence that GPT-6.1 Sol is insufficient. Completion is computed, not a snapshot/checklist.
 
 ## HARDENED extensions
 

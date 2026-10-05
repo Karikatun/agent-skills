@@ -2,7 +2,7 @@
 name: delegated-engineering
 description: "Delegate repository engineering with risk-scaled evidence."
 metadata:
-  version: "2.3.0"
+  version: "2.3.1"
 ---
 
 # Delegated Engineering
@@ -42,8 +42,8 @@ STANDARD is the default: source identity, effective instruction chain, mandatory
 | Model/role | Use |
 | --- | --- |
 | GPT-6 Luna (`gpt-6-luna`) / `explorer` | focused, deterministic, reversible discovery, edits, docs, checks, and low-risk review |
-| GPT-6 Sol (`gpt-6-sol`) | default for ordinary planning, bounded implementation and debugging; also complex, shared-contract, security, and high-risk work when sufficient |
-| GPT-6 Astra (`gpt-6-astra`) | rare, node-local escalation for the hardest work, only with concrete evidence that GPT-6 Sol is insufficient |
+| GPT-6.1 Sol (`gpt-6.1-sol`) | default for ordinary planning, bounded implementation and debugging; also complex, shared-contract, security, and high-risk work when sufficient |
+| GPT-6 Astra (`gpt-6-astra`) | rare, node-local escalation for the hardest work, only with concrete evidence that GPT-6.1 Sol is insufficient |
 
 Preserve an explicit compatible user-pinned legacy model. If a requested model is unavailable or inadequate, pause and escalate; never silently substitute another model. Requested model and role are not proof of the runtime actually observed: preserve the existing runtime evidence contract. Model cost never lowers the required risk, review, or evidence floor.
 
