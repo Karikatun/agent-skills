@@ -38,7 +38,7 @@ TaskNode:
   instruction_manifest: InstructionManifest
   acceptance: []
   checks: []
-  routing: {agent_type: "", model: "", reason_code: ""}
+  routing: {agent_type: "", model: "", reasoning_effort?: "", reason_code: ""}
   delegation: forbidden
   reuse_from?: {agent: "", session: ""}
   review_assignment?: {implementers: {agents: [], sessions: []}, prior_reviewers: {agents: [], sessions: []}}
@@ -75,7 +75,7 @@ TaskReceipt:
   wip_evidence?: [{path: "", baseline_ref: "", comparison: "three_way|semantic|replace_exact_identity", refs: [EvidenceRef]}]
   review?: ReviewEvidence
   repository_state_transitions?: [{kind: "index|ref", target: "", from: "", to: ""}]
-  runtime: {observed_model: "unknown", verified: false, requested_role?: "", requested_model?: "", observed_role?: "", identity?: {agent: "unknown", session: "unknown", verified: false}}
+  runtime: {observed_model: "unknown", verified: false, requested_role?: "", requested_model?: "", observed_role?: "", requested_reasoning_effort?: "", observed_reasoning_effort?: "unknown", reasoning_effort_verified?: false, identity?: {agent: "unknown", session: "unknown", verified: false}}
   gaps: [{kind: "evidence|capability|environment|instruction", detail: "", next_safe_action: ""}]
   escalation?: {kind: "workflow|model", reason_code: "", evidence: [EvidenceRef], requested: ""}
 ```
@@ -112,5 +112,7 @@ HARDENED sources use `HardenedSourceRef`: dirty/new authority resolves under tru
 Skill modification/transfer/install/update binds full distributable tree: every path/type/mode, file hash/exact symlink target, stable manifest/tree digest—or exact full-closure `skill-transfer-review` receipt. Read-only source/staged review, separately authorized executor, rollback-safe/atomic activation, source/staged/installed manifest/bytes comparison, and fresh-context discovery bind it. Includes Markdown/`agents/openai.yaml`; unchanged use is STANDARD task-used `SourceRef`.
 
 ## Runtime evidence limits
+
+Effort fields are optional extensions, not a new ledger requirement. Record requested effort separately from trustworthy observed effort; without transport/runtime proof use `unknown` and unverified status. `reasoning_effort_verified` is separate from existing model `verified`; a verified model does not prove effort. A supported request records intent only. Attach a runtime `EvidenceRef` only when needed for a verification claim.
 
 Requested routing is not runtime: `read-only`/`delegation: forbidden` are policy; absent proof use `unknown`/`verified:false`. Fresh work needs no identity; reuse/review do. Missing identity/freshness/isolation is a gap; bytes do not prove fresh read/enforcement.
