@@ -1,23 +1,19 @@
 # Execution, validation, and release
 
-Apply [SKILL.md](../SKILL.md)'s canonical invariants. This reference governs mutation lifecycle only; contracts are defined in [evidence contracts](evidence-contracts.md). Shared progress and stopping rules are in [planning](planning.md#progress-and-stopping).
+For FULL mutation/validation/integration/release; apply [core invariants](../SKILL.md), [evidence contracts](evidence-contracts.md) and shared [progress/stopping](planning.md#progress-and-stopping).
 
-## Mutation lifecycle
+## Mutation lifecycle and WIP
 
-Use only needed states: `ROUTING -> EXECUTING -> INTEGRATING? -> VALIDATING? -> REVIEWING? -> FINALIZING -> LOCAL_READY`. Discovery/planning precede execution only when routed; read-only and plan-only end at `EVIDENCE_COMPLETE` or `PLAN_COMPLETE`. Truthful stops include `PAUSED_AUTHORITY`, `PAUSED_CAPABILITY`, `PAUSED_ENVIRONMENT`, `BLOCKED_UNRESOLVED`, and `BLOCKED_REVIEW_LIMIT`.
+Use needed states only: `ROUTING -> EXECUTING -> INTEGRATING? -> VALIDATING? -> REVIEWING? -> FINALIZING -> LOCAL_READY`. Discovery/planning precede execution only when routed; read-only/plan-only finish at `EVIDENCE_COMPLETE`/`PLAN_COMPLETE`. Truthful stops: `PAUSED_AUTHORITY`, `PAUSED_CAPABILITY`, `PAUSED_ENVIRONMENT`, `BLOCKED_UNRESOLVED`, `BLOCKED_REVIEW_LIMIT`.
 
-Workers own exact writes and smallest meaningful local checks. Validators prove acceptance and required gates without fixing defects. An integrator is used only when authorized and owns only assigned conflicts, generated files, staging, commits, and integration validation. Recheck relevant dirty paths before assignment and completion.
+Workers own exact writes and smallest meaningful local checks. Validators prove gates without fixing. An authorized integrator owns only assigned conflicts/generated files/staging/commits/integration validation. Recheck relevant dirty paths before assignment and completion. Overlapping pre-existing WIP requires a targeted immutable baseline and three-way or semantic preservation; replacing its exact identity needs explicit authority. No overlap means no WIP evidence structure. Unavailable safe snapshot/comparison means pause, never claimed preservation.
 
-If a relevant pre-existing dirty path overlaps a write, bind a targeted immutable baseline and prove three-way or semantic preservation; replacing its exact prior identity needs explicit authority. No overlap means no WIP evidence structure. If the snapshot/comparison cannot be made, pause rather than claiming preservation.
+## Fix and integration order
 
-Instruction or required-skill identity drift invalidates affected preflight and evidence. Re-read the controlling originals, then targeted-revalidate or replan according to impact; the changed source does not authorize itself.
+Review finding -> primary-authorized fix node -> worker satisfying [safe reuse](planning.md#assignments-and-safe-reuse), otherwise fresh worker -> affected validation -> required fresh re-review. A worker cannot self-close required review. Reuse/invalidations follow [evidence contracts](evidence-contracts.md#efficient-evidence-reuse); avoid extra unchanged preparation/snapshot/check cycles.
 
-## Fixes, validation, integration
-
-After a review finding, the primary creates an authorized fix node. The same worker may continue only under the safe-reuse conditions in [planning](planning.md); otherwise use a fresh worker. Run affected validation, then obtain the required fresh re-review. Reuse valid checks/reviews/manifests until their relevant inputs, scope/content, instructions/authority or independence requirements change; no repeated unchanged checks/reviews or full scans/snapshot regeneration after tool calls/messages alone. Necessary bounded control/unknown-write comparisons remain required. A worker never self-closes a reviewer requirement.
-
-Integrate only after scopes/contracts are compatible and explicit integration authority exists. Only authorized integrator/release roles may mutate index/refs; validate after. Never stage for checkpoints, snapshots, WIP preservation, handoffs or review preparation. Resolve only assigned conflicts; preserve unrelated WIP. Local checks and validation prove no remote, release, or live state.
+Integrate only after compatible scopes/contracts and explicit integration authority; only authorized integration/release roles mutate index/refs, then validate. Never stage for internal checkpoints, snapshots, WIP preservation, handoffs or review preparation. Resolve assigned conflicts only; local gates prove no remote/release/live state.
 
 ## Release boundary
 
-Release work requires explicit authority, a delegated release agent, independently read applicable runbooks, and separate evidence for each requested step: push, remote SHA/CI, merge, deploy, and live verification. Do not infer any later state from `LOCAL_READY`.
+Explicit release authority, delegated release responsibility and independently read original runbooks are prerequisites. Preserve their procedural order and stopping conditions; bind each authorized transition and verify its result before a dependent step. Push, remote SHA/CI, merge, deploy and live verification each need separate evidence and authority; `LOCAL_READY` proves none of them. No later release action is implied by an earlier one.

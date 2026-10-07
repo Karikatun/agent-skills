@@ -6,7 +6,7 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 
 ## Available skills
 
-Delegated Engineering source **2.4.1** is a compatible optimization patch over 2.4.0: it preserves node-level model/effort selection and adds conservative scheduling, acceptance-based progress and evidence reuse without repository scratch. Published download/tag links below still select **2.4.0**; 2.4.1 publication and installation are separate steps.
+Delegated Engineering **2.4.2** is a compatible cleanup patch over 2.4.1/2.4.0: it reduces always-loaded context and duplication while preserving model/effort routing, safety, scheduling, progress and evidence semantics. Versioned download and installation links below select 2.4.2; source checks, archive publication, installation and live verification are separate evidence.
 
 | Skill | Version | Use it for |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ Delegated Engineering source **2.4.1** is a compatible optimization patch over 2
 | [Devlog Editor](skills/devlog-editor/README.md) | 1.0.0 | Audit facts, causal links, chronology and the contribution of development posts |
 | [Humanize Dev Post](skills/humanize-dev-post/README.md) | 1.0.0 | Readable development stories with faithful facts and requested format |
 | [Application Security Review](skills/application-security-review/README.md) | 1.0.0 | Trace concrete security defects, current controls and evidence gaps |
-| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.4.1 (source) | Lead every repository task, including read-only inspection and trivial edits, while delegated agents own the work |
+| [Delegated Engineering](skills/delegated-engineering/README.md) | 2.4.2 | Lead every repository task, including read-only inspection and trivial edits, while delegated agents own the work |
 | [Local Video Analysis](skills/local-video-analysis/README.md) | 1.0.0 | Prepare local speech and timestamped frame evidence from videos |
 | [Martin Clean Code](skills/martin-clean-code/README.md) | 1.0.0 | Apply a focused Clean Code lens without mechanical rules or rewrites |
 | [Martin Clean Architecture](skills/martin-clean-architecture/README.md) | 1.0.0 | Assess boundaries and dependency direction against real change costs |
@@ -35,7 +35,7 @@ Choose one archive below. Each ZIP contains one skill folder, not the repository
 | Skill | Archive | Integrity check |
 | --- | --- | --- |
 | API Performance Review 1.0.2 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/api-performance-review-v1.0.2/api-performance-review-1.0.2.zip.sha256) |
-| Delegated Engineering 2.4.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip.sha256) |
+| Delegated Engineering 2.4.2 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.2/delegated-engineering-2.4.2.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.2/delegated-engineering-2.4.2.zip.sha256) |
 | Learn from Task 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/learn-from-task-v1.0.0/learn-from-task-1.0.0.zip.sha256) |
 | Documentation Update 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/documentation-update-v1.0.0/documentation-update-1.0.0.zip.sha256) |
 | Humanize Russian Text 1.0.0 | [Download ZIP](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip) | [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/humanize-russian-text-v1.0.0/humanize-russian-text-1.0.0.zip.sha256) |
@@ -82,7 +82,7 @@ Use $skill-installer to install only learn-from-task from https://github.com/Kar
 ```
 
 ```text
-Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.0/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
+Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.2/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
 ```
 
 These links select fixed release tags. The installer chooses its supported personal directory and reports the path; some versions use `$CODEX_HOME/skills` (usually `~/.codex/skills`). Use the reported path for that installation instead of creating a duplicate in another directory.
