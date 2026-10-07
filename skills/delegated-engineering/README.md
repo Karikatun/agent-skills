@@ -1,87 +1,34 @@
 # Delegated Engineering
 
-Version **2.4.0** introduces independent model and reasoning-effort selection for each node. Local source/package checks do not establish installation, client enforcement, or live runtime behavior; those require separate evidence.
+Source version **2.4.1** is a compatible optimization patch over **2.4.0**. It retains node-level model/effort selection, client awareness and the existing FAST/FULL, STANDARD/HARDENED workflow, with a smaller shared instruction footprint and less repeated orchestration. Local package checks prove neither installation, host enforcement nor live runtime behavior.
 
-Delegated Engineering is a resource-aware workflow for repository work. A primary agent owns routing, scope, authority, and the final synthesis. Delegated agents do the bounded work: an explorer finds facts, a planner resolves a real design choice, a worker edits only its assignment, a validator checks acceptance, and a reviewer inspects without writing. Integrators and release agents are used only for separately authorized scopes.
+A primary owns routing, scope, authority and synthesis; delegated children execute bounded discovery, planning, implementation, validation or read-only review. Integration and release remain separately authorized responsibilities. Optimize accepted results per total wall-clock time and usage, including retries, rework and repeated context; required safety and completion come first.
 
-Compatibility note: v2.4 preserves the v2.2 workflow and protocol, including the v2.1 behavioral floor. The v2.2 compact protocol is not wire-compatible with strict v2.1 parsers. Fields are omitted, renamed, or regrouped (for example routing, `completion_gate`, separate escalation, and review structures); consumers must migrate or normalize to v2.2 canonical shapes. The v2.3 model routes remain unchanged. v2.4 adds optional effort selection/request/observation fields; strict consumers may need to accept or normalize these optional extensions. No new ledger is required. This describes source compatibility, not proof of compatibility with every client.
+## 2.4.1 source release notes
 
-The aim is proportional process. A simple question or deterministic typo fix should be quick. A security boundary, migration, shared contract, skill update, or release needs stronger evidence and more independent control. The workflow never saves context by skipping applicable `AGENTS.md`, mandatory skills or runbooks, security constraints, acceptance checks, WIP protection, or a required review.
+- Consolidates model/effort choices in [SKILL.md](SKILL.md); retains compatible GPT-6/GPT-6.1 user pins, runtime/client limits and requested versus observed settings. Unknown effort alone does not block ordinary completion; no new verification machinery.
+- Adds a rare empirical Astra exception beside concrete Sol insufficiency, requiring cited real task-class outcomes. HIGH_RISK/EXTREME never makes Astra the default. Optional `task_class` and standalone `RoutingOutcome` support future comparison without a ledger, benchmarks or invented metrics.
+- Schedules independent ready work conservatively: FAST one child, ordinary FULL 1–2 concurrent children; unknown global capacity uses desired parallelism 2. Capacity denial keeps work pending for sequential execution, never raises model/effort.
+- Tracks acceptance milestones in memory, changes stalled workflows after two empty cycles and finishes when mandatory gates are satisfied. No speculative phases or progress agent.
+- Makes content-complete snapshots identify full content without copying trees. Reuses valid evidence/checks/reviews, preserves control and unknown-write comparisons, bans repository scratch and recursive evidence amplification, and reserves external byte storage for actual WIP/recovery/evidence needs.
 
-## Choose the smallest sufficient path
+Compatibility: 2.4.1 preserves 2.4.0 capabilities and 2.3.1's proportional workflow. The v2.2 compact protocol is not wire-compatible with strict v2.1 parsers; consumers must normalize its renamed/regrouped shapes. v2.4 effort fields and 2.4.1 optional node `task_class` may need acceptance/normalization in strict consumers. `RoutingOutcome` and progress are not mandatory receipt fields. This describes source compatibility, not proof for every client.
 
-First resolve the applicable authority chain and current WIP. Then choose the mode (`read_only`, `mutation`, `plan_only`, or `release`) and complexity (`TRIVIAL`, `LOCAL`, `COMPLEX`, `HIGH_RISK`, or `EXTREME`). Add a phase or a stronger model only when it improves correctness, independence, risk control, or required evidence.
+## Use the smallest sufficient path
 
-| Path | When to use | Typical flow |
-| --- | --- | --- |
-| `FAST_PATH` read-only | Exact, low-risk location or behavior question | GPT-6 Luna (`gpt-6-luna`) explorer → evidence answer |
-| `FAST_PATH` mutation | Deterministic, reversible clean-target edit when no canonical `SKILL.md` FULL/HARDENED/mandatory-review trigger applies | GPT-6 Luna (`gpt-6-luna`) worker → focused check; otherwise FULL |
-| `FULL` | Uncertainty, non-local behavior, shared contract, material risk, integration, review, or release | Load only the references needed for the chosen work |
+[SKILL.md](SKILL.md) is the canonical route/model/effort policy and owns self-contained FAST projections. Simple exact lookup or deterministic reversible edits can use one Luna child and a focused check without a graph, planner or reviewer. FULL adds only real discovery, design choices, validation and required review; its lazy graph starts only when multiple substantive nodes are needed. Known difficult work starts at appropriate settings without a failed-model ladder.
 
-The model routes by risk, not by request size:
+Before adding an agent, planner, review, snapshot or expensive check, identify the unresolved question and how the result changes acceptance or the next decision. Prefer safe reuse when context overlaps and parallel execution would not shorten the critical path. Reuse requires unchanged scope, ownership, instructions/authority/skills, risk, responsibility, valid evidence and fitting model/effort configuration; required independence still needs a fresh reviewer. Runtime identity matters only to claims that depend on it.
 
-| Model | Best fit |
-| --- | --- |
-| GPT-6 Luna (`gpt-6-luna`) | Focused deterministic and reversible discovery, docs, edits, checks, low-risk review |
-| GPT-6.1 Sol (`gpt-6.1-sol`) | Default for ordinary planning, bounded implementation and debugging; also complex, shared-contract, security, and high-risk work when sufficient |
-| GPT-6 Astra (`gpt-6-astra`) | Rare node-local escalation for the hardest work, only with concrete evidence that GPT-6.1 Sol is insufficient |
+STANDARD binds task-used originals, mandatory rules, scope, acceptance, checks and WIP safeguards. HARDENED always routes FULL for designated instruction/authority changes, skill modification/transfer/install/update, supply-chain paths, sensitive policy or provenance ambiguity. Skill changes bind the complete distributable tree, including `agents/openai.yaml`, under pre-change authority. Changed instructions cannot authorize themselves. Ordinary unchanged Markdown use does not load a package graph.
 
-Choose model and reasoning effort per node, independently from workflow and evidence mode. Start mechanical Luna work at `low`, short local interpretation at `medium`, substantive bounded Luna work at `high`, ordinary Sol work at `medium`, and complex Sol work at `high`. A justified targeted Astra escalation starts at `low`; the existing concrete Sol-insufficiency condition still applies. Detailed levels, client support, inheritance, and reuse are in [reasoning-effort.md](references/reasoning-effort.md). These are starting guidelines, not measured quality or cost guarantees.
+Every agent independently reads applicable authoritative originals; reading alone proves no compliance. Observable and independent rules need matching evidence. Preserve unrelated WIP. Primary verifies writes and protected repository state; discovery/planning/implementation/validation/review never stage for internal checkpoints. `LOCAL_READY` is local only: push, remote SHA/CI, merge, deployment and live proof each need explicit authority and separate evidence.
 
-Preserve explicit compatible user model and effort pins, including legacy models. Fixed role configuration can override requests; choose a compatible role or escalate, never silently substitute. Live client/model support controls available settings. Requested model, role, and effort are distinct from observed runtime; model verification does not verify effort. Prioritize quality and completion using total rework, time, and usage. First improve facts/scope before reasoning escalation; missing tools/access/rights/evidence are capability or environment gaps. Stop after acceptance and required checks, without forced expensive rechecks or automatic comparative agents.
+## Conditional references
 
-Reuse valid evidence or a safe worker continuation before creating another agent. Reuse is allowed only while scope, ownership, authority, skills, risk, and responsibility are unchanged. Record runtime identity only when a reuse or independent-review claim depends on it; if that identity is unproved, the claim is blocked. A fresh reviewer is required when independence matters, and any write invalidates clean review evidence.
+FAST loads no delegated-engineering reference files, but still reads effective/nested `AGENTS.md`, mandatory project skills and task-needed runbooks/references. FULL uses [planning](references/planning.md); [execution](references/execution.md) for mutation/validation/integration/release; [review profiles](references/review-profiles.md) for required review; [evidence contracts](references/evidence-contracts.md) for expanded contracts, runtime identity or provenance (HARDENED loads it). [Reasoning effort](references/reasoning-effort.md) covers client/inheritance/reuse and exceptional settings, without repeating the canonical table.
 
-## STANDARD and HARDENED
-
-Classify HARDENED triggers first: HARDENED always routes FULL; FAST is STANDARD-only. `STANDARD` is the default. It records the source identity, effective instruction chain, mandatory skills and rules, scope, acceptance, checks, and WIP safeguards needed by the task. It binds the entrypoint plus task-used instruction-bearing Markdown references; a full package surface remains a `HARDENED` conditional, not a STANDARD default.
-
-`HARDENED` is lazy and conditional. Use it when changing a skill or `AGENTS.md`, installing or updating a skill, handling supply-chain or credential-sensitive instructions, changing security-sensitive authority, changing release/deployment policy, or resolving untrusted dirty authority or provenance ambiguity. An actual skill modification, transfer, installation, or update reviews and binds the complete distributable tree—including every path and metadata such as `agents/openai.yaml`—even when the edit is Markdown-focused. Ordinary unchanged Markdown skill use remains lightweight STANDARD. If authority or capability cannot be proved, pause; do not turn a self-report into evidence.
-
-The core boundaries remain simple: primary orchestrates, children execute, and only primary delegates. Every agent reads its applicable authoritative originals independently; reading is not compliance, so mandatory rules must be applied and observable or independent rules must have matching evidence. `LOCAL_READY` is local evidence only—not a remote SHA/CI result, merge, deployment, or live proof. Never reset, stash, revert, or overwrite unrelated WIP.
-
-Primary verifies reported changes and protected repository state; only explicitly authorized integration/release work may stage, commit, or mutate refs.
-
-`SKILL.md` owns the self-contained FAST contract; [evidence-contracts.md](references/evidence-contracts.md) owns expanded receipt and completion rules.
-
-## Conditional reference loading
-
-`SKILL.md` contains the shared routing, invariants, and self-contained minimal `FastAssignment`. FAST loads no delegated-engineering reference files, but it still reads applicable authoritative originals and effective nested `AGENTS.md`, mandatory project skills, and task-required skill references or runbooks. For `FULL` work, load [planning.md](references/planning.md); add [execution.md](references/execution.md) for mutation, integration, validation, or release; add [review-profiles.md](references/review-profiles.md) only for independent review. Load [evidence-contracts.md](references/evidence-contracts.md) when an expanded STANDARD or HARDENED contract, review evidence, runtime identity, or provenance is needed; HARDENED uses its extension. Load [reasoning-effort.md](references/reasoning-effort.md) only for detailed effort selection or client/inheritance/reuse questions; mechanical FAST selects and requests supported effort from the entrypoint alone. This keeps a trivial task from paying for release, review, or supply-chain machinery that it never uses.
-
-
-## Compact examples
-
-Read-only lookup:
-
-```text
-Where is reconnect timeout defined?
-→ resolve applicable instructions
-→ FAST_PATH read-only
-→ GPT-6 Luna (`gpt-6-luna`), low effort, explorer
-→ EVIDENCE_COMPLETE with the location and any limitation
-```
-
-Trivial mutation:
-
-```text
-Fix a typo in a known component.
-→ FAST_PATH mutation
-→ GPT-6 Luna (`gpt-6-luna`), low effort, worker edits the assigned file
-→ focused check
-→ LOCAL_READY
-```
-
-Local bug:
-
-```text
-Reconnect loses state intermittently.
-→ targeted GPT-6 Luna (`gpt-6-luna`), high effort, exploration
-→ GPT-6.1 Sol (`gpt-6.1-sol`), high effort for this ambiguity, implementation
-→ focused validation
-→ review only if risk or an authoritative rule requires it
-```
-
-For a high-risk auth change, the path may be explorer → GPT-6.1 Sol (`gpt-6.1-sol`) planning where needed → GPT-6.1 Sol (`gpt-6.1-sol`) implementation → validation → specialist security review → fresh whole-scope review. Escalate a node to GPT-6 Astra (`gpt-6-astra`) only when concrete evidence shows GPT-6.1 Sol is insufficient. For a skill modification, HARDENED adds trusted pre-change identity, exact effective bytes, approval, complete distributable-tree binding (including metadata such as `agents/openai.yaml`), rollback-safe activation, installed-manifest comparison, and fresh-context verification. These branches are conditional, not a default tax.
+Typical routes: exact lookup → Luna low → evidence answer; known typo → Luna low → edit → focused check → done; ordinary implementation → Sol medium → focused validation → required review if applicable. An unknown local bug needs focused discovery only if current evidence is insufficient; complex debugging can start Sol high. Astra eligibility is defined only in [SKILL.md](SKILL.md).
 
 ## Install, validate, and use
 
@@ -107,7 +54,7 @@ Use $delegated-engineering to fix this known documentation typo and run the focu
 
 ## Release references
 
-Release **2.4.0** references: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip) and [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip.sha256). Release links do not prove that a package has been installed or verified live.
+Published release **2.4.0** references (current source is **2.4.1**, not yet a published archive): [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip) and [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.0/delegated-engineering-2.4.0.zip.sha256). Release links do not prove that a package has been installed or verified live.
 
 To select the fixed 2.4.0 tag with a supported installer:
 

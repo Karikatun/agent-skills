@@ -1,6 +1,6 @@
 # Execution, validation, and release
 
-Apply [SKILL.md](../SKILL.md)'s canonical invariants. This reference governs mutation lifecycle only; contracts are defined in [evidence contracts](evidence-contracts.md).
+Apply [SKILL.md](../SKILL.md)'s canonical invariants. This reference governs mutation lifecycle only; contracts are defined in [evidence contracts](evidence-contracts.md). Shared progress and stopping rules are in [planning](planning.md#progress-and-stopping).
 
 ## Mutation lifecycle
 
@@ -14,9 +14,9 @@ Instruction or required-skill identity drift invalidates affected preflight and 
 
 ## Fixes, validation, integration
 
-After a review finding, the primary creates an authorized fix node. The same worker may continue only under the safe-reuse conditions in [planning](planning.md); otherwise use a fresh worker. Validate the fix, then obtain the required fresh re-review. A worker never self-closes a reviewer requirement.
+After a review finding, the primary creates an authorized fix node. The same worker may continue only under the safe-reuse conditions in [planning](planning.md); otherwise use a fresh worker. Run affected validation, then obtain the required fresh re-review. Reuse valid checks/reviews/manifests until their relevant inputs, scope/content, instructions/authority or independence requirements change; no repeated unchanged checks/reviews or full scans/snapshot regeneration after tool calls/messages alone. Necessary bounded control/unknown-write comparisons remain required. A worker never self-closes a reviewer requirement.
 
-Integrate only after scopes/contracts are compatible and explicit integration authority exists. Only authorized integrator/release roles may mutate index/refs; validate after. Resolve only assigned conflicts; preserve unrelated WIP. Local checks and validation prove no remote, release, or live state.
+Integrate only after scopes/contracts are compatible and explicit integration authority exists. Only authorized integrator/release roles may mutate index/refs; validate after. Never stage for checkpoints, snapshots, WIP preservation, handoffs or review preparation. Resolve only assigned conflicts; preserve unrelated WIP. Local checks and validation prove no remote, release, or live state.
 
 ## Release boundary
 
