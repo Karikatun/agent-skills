@@ -1,12 +1,16 @@
 # Execution, validation, and release
 
-For FULL mutation/validation/integration/release; apply [core invariants](../SKILL.md), [evidence contracts](evidence-contracts.md) and shared [progress/stopping](planning.md#progress-and-stopping).
+For FULL mutation/validation/integration/release; apply [core invariants](../SKILL.md), [evidence contracts](evidence-contracts.md) and shared [acceptance/stopping](planning.md#acceptance-and-stopping).
 
 ## Mutation lifecycle and WIP
 
 Use needed states only: `ROUTING -> EXECUTING -> INTEGRATING? -> VALIDATING? -> REVIEWING? -> FINALIZING -> LOCAL_READY`. Discovery/planning precede execution only when routed; read-only/plan-only finish at `EVIDENCE_COMPLETE`/`PLAN_COMPLETE`. Truthful stops: `PAUSED_AUTHORITY`, `PAUSED_CAPABILITY`, `PAUSED_ENVIRONMENT`, `BLOCKED_UNRESOLVED`, `BLOCKED_REVIEW_LIMIT`.
 
-Workers own exact writes and smallest meaningful local checks. Validators prove gates without fixing. An authorized integrator owns only assigned conflicts/generated files/staging/commits/integration validation. Recheck relevant dirty paths before assignment and completion. Overlapping pre-existing WIP requires a targeted immutable baseline and three-way or semantic preservation; replacing its exact identity needs explicit authority. No overlap means no WIP evidence structure. Unavailable safe snapshot/comparison means pause, never claimed preservation.
+Workers own exact writes and smallest meaningful local checks. Validators prove gates without fixing. An authorized integrator owns only assigned conflicts/generated files/staging/commits/integration validation. Before mutation bind intended scope, relevant dirty/WIP and cheap controls; after mutation verify actual writes, affected scope and controls under [scoped evidence](evidence-contracts.md#evidence-levels-and-coverage). Expand only on named risk/anomaly. Recheck relevant dirty paths before assignment and completion. Overlapping pre-existing WIP requires a targeted immutable baseline and three-way or semantic preservation; replacing its exact identity needs explicit authority. No overlap means no WIP evidence structure. Unavailable safe snapshot/comparison means pause, never claimed preservation.
+
+## Checks and first diagnostics
+
+Use the existing runner/tool, not a helper project. Capture `CheckResult` ([contract](evidence-contracts.md#runner-results)) during normal execution; failure output accompanies its result for the next node. No extra collector, wrapper, executor or wrapper reviewer just to see already-returned output. A helper is justified only by a demonstrated output-retention capability gap and scoped engineering authority. Run the exact useful failing check before broad diagnosis; preserve actual failure rather than rerun merely to recollect it. Secret redaction and bounded retention apply to success and failure alike.
 
 ## Fix and integration order
 

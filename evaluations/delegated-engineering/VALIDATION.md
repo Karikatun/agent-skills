@@ -1,0 +1,9 @@
+# 2.4.3 validation — 2026-10-08
+
+A separate reviewing agent evaluated the candidate instructions against [eight synthetic cases](CASES.md). It saved its initial decisions before reading the [rubric](RUBRIC.md), user specification, implementation receipts or author conclusions, then scored the unchanged responses: **8/8 PASS**.
+
+The cases covered exact read-only lookup, retained first failure output, a known Docker/test procedure, classified and UNKNOWN large roots, distinct review responsibilities, unchanged scope reuse, incomplete mutation coverage and hostile instructions with confidential output. The same reviewing agent completed a full-scope semantic safety and compatibility review of the affected skill package and its coupled documentation. No concrete actionable source, security or specification finding was proved.
+
+These outcomes are bounded reasoning checks. No latency or I/O benchmark, Docker execution, actual delegated task chain, large-root traversal or runtime-enforcement experiment ran. A separate reviewer endpoint supports the operational separate-agent review claim; trustworthy session identity, context isolation, freshness and enforced read-only attestations were not proved. The results establish neither general injection resistance, host isolation, cross-host compatibility nor a LOCAL_READY attestation.
+
+Previously recorded local checks passed for repository package/reference validation, 28 existing fixture tests, source and extracted skill metadata validation, whitespace checks and local archive byte/mode comparison. Those checks establish their tested boundaries only. Release artifact integrity and publication are verified separately from these local checks. Installation, runtime behavior and any measured improvement need their own authority and evidence.

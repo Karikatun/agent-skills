@@ -8,6 +8,14 @@ SkillRef: {name: "", source: SourceRef, triggered_by: ""}
 RuleRef: {source: SourceRef, rule_id: "", kind: "attested|observable|independent_required", expected_evidence?: [EvidenceRef]}
 EvidenceRef: {ref: "", type: "check|artifact|review|runtime", state?: "ran_pass|ran_fail|not_run|manual_required|environment_blocked", path?: "", identity?: ""}
 InstructionManifest: {sources: [SourceRef], mandatory_skills: [SkillRef], mandatory_rules: [RuleRef], captured_at: ""}
+Gate: {criterion: "", evidence: [EvidenceRef], owner: "worker|validator|reviewer|specialist", independent: false, profile?: ""}
+EvidenceCoverage:
+  levels: ["CONTROL_BASELINE", "CHANGE_SCOPE"]
+  covered_scope: []
+  changed_paths_source?: "" # trustworthy mechanism, coverage/limits, not a worker assertion
+  excluded_roots?: [{path: "", classification: "", evidence: EvidenceRef, identity: "", safe_handling: ""}]
+  expanded_reason?: ""
+  limitations: []
 # FastAssignment is canonical in SKILL.md; FAST itself loads no reference.
 
 TaskContract:
@@ -20,6 +28,8 @@ TaskContract:
   instruction_manifest: InstructionManifest
   acceptance: []
   checks: []
+  gates?: [Gate]
+  evidence_coverage?: EvidenceCoverage
   review?: []
   task_nodes?: [TaskNode]
   runtime_ledger?: [{node: "", role: "", agent: "", session: "", verified: false}]
@@ -39,6 +49,7 @@ TaskNode:
   instruction_manifest: InstructionManifest
   acceptance: []
   checks: []
+  gates?: [Gate]
   routing: {agent_type: "", model: "", reasoning_effort?: "", reason_code: ""}
   delegation: forbidden
   reuse_from?: {agent: "", session: ""}
@@ -54,7 +65,7 @@ ReviewEvidence:
   rule_bindings: [RuleRef]
   immutable_snapshot_digest: ""
   manifest: EvidenceRef # type: artifact; primary-generated canonical snapshot
-  protected_state: EvidenceRef # primary-generated repository-wide state
+  protected_state: EvidenceRef # primary-generated controls + covered scope, expanded when justified
   profiles: []
   round: 1
   reviewer_runtime: {agent: "unknown", session: "unknown", verified: false}
@@ -71,7 +82,8 @@ TaskReceipt:
   sources_read: [SourceRef]
   skills_read: [SkillRef]
   instruction_compliance: InstructionCompliance
-  checks: [{type: "check", ref: "", state: "ran_pass|ran_fail|not_run|manual_required|environment_blocked"}]
+  checks: [{type: "check", ref: "", state: "ran_pass|ran_fail|not_run|manual_required|environment_blocked", result?: CheckResult}]
+  evidence_coverage?: EvidenceCoverage
   artifacts?: [{type: "artifact", ref: "", path: "", identity: ""}]
   wip_evidence?: [{path: "", baseline_ref: "", comparison: "three_way|semantic|replace_exact_identity", refs: [EvidenceRef]}]
   review?: ReviewEvidence
@@ -87,15 +99,25 @@ Rule evidence exact-matches manifest source/rule/kind/expected/actual refs: atte
 
 STANDARD receipts require `sources_read`, `skills_read`, `instruction_compliance`, `checks`, `gaps` and minimal runtime; omit unused graph/WIP/review/identity/transitions/artifacts/escalation. `writes` lists the complete actual mutation/integration set, `[]` otherwise. Primary exact-matches final diff to scope/ownership/baseline; mismatch or relevant later mutation pauses/fails and needs new affected evidence.
 
+## Evidence levels and coverage
+
+`CONTROL_BASELINE` is cheap applicable control evidence: HEAD target/worktree HEAD/branch, index identity/state (including stages/flags relevant to preservation), refs when risk/transition/rules need them, sanitized applicable repository/worktree config/remotes, resolved hooks, effective ignore/attribute inputs and applicable `AGENTS.md`/mandatory instruction/skill identities. Use known applicable paths and Git metadata; no full tree walk or global config scan. Record absent inputs. Instruction discovery includes relevant ancestor/nested sources for the targeted paths, not all repository Markdown.
+
+`CHANGE_SCOPE` binds assigned files, sources actually read for the hypothesis, intended mutations, relevant dirty/untracked/WIP, directly coupled dependencies/contracts and acceptance inputs. STANDARD normally uses controls + this scope. Read-only exact lookup needs targeted source coverage and controls, with no irrelevant `.scratch`, dependency/build/cache/generated or ignored/untracked traversal. Read-only evidence does not prove host enforcement or unchanged bytes across the whole repository.
+
+`EXPANDED_INVENTORY` is justified only by unknown write risk, overlapping WIP, provenance ambiguity, suspicious filesystem mutation, HARDENED, integration/release, unsafe unclassified surface or explicit requirement. Bind the reason and smallest complete surface that resolves it; full repository scope only when required by that risk/rule. HARDENED retains complete affected package/provenance closure below. It never makes every unrelated dependency tree relevant. Exclude `.git` apart from protected controls.
+
+For large roots use `SOURCE|DEPENDENCY|GENERATED|CACHE|ORCHESTRATION|UNKNOWN` with project/tool metadata or explicit safe configuration binding path, inputs/root identity, relevance and safe handling. Examples such as `node_modules`, `.scratch`, `dist`, `coverage` are candidates, never automatic exclusions. Ignore rules/basename or lockfile alone neither classify safely nor prove installed bytes unchanged. Known immutable root fingerprints or bound generated-input/package identities may avoid repeated recursion only when immutability/write coverage is trustworthy and matches the claim. Required acceptance inputs and unknown/unsafe surfaces cannot be excluded to obtain PASS. A changed classification/input invalidates that root's evidence only; reassess it, not every root.
+
+Record path/type/mode/size plus immutable commit/tree/blob identity for established clean tracked content when sufficient. Metadata/status alone does not prove clean working bytes: use trustworthy existing Git/tool verification or bounded digest when that identity cannot be safely used. Dirty/untracked regular files use bounded streaming digests; links use exact targets, never follow them. Bound count/bytes/time and stream large files. Traversal, new/changed escaping links, special/device/FIFO/socket/unreadable entries or incomplete required coverage/hashing are gaps unless exact pre-existing authorized safe handling applies. Never expose contents/secrets in prompts/receipts/logs.
+
 ## Protected state and snapshots
 
-Primary privately generates manifest/state refs, sending only artifact `ref`/`identity`; children cannot forge or replace them. Each `protected_state`/`final_state`, including FAST baseline/final refs, exact-matches its manifest. Compare before/after child access, handoffs, pre-integration/release and final. Ordinary head/branch stay identical with zero control transitions; authorized integration/release receipts alone carry ordered `repository_state_transitions` matching authority/ownership/final state.
+Primary privately generates manifest/state refs, sending only artifact `ref`/`identity`; children cannot forge or replace them. Legacy `protected_state`/`final_state` and FAST baseline/final refs bind controls plus declared coverage, rather than silently claiming repository-wide inventory. Receipts/assignments exact-match these manifests. Compare applicable before/after controls and affected scope at access/mutation/integration/release/final boundaries; reuse unchanged coverage. Handoff/message/tool/completion is not a filesystem event or reason for full scanning. Ordinary controls stay identical with zero transitions; authorized integration/release receipts alone carry ordered `repository_state_transitions` matching authority/ownership/final state.
 
-Protected state covers HEAD target/branch/worktree HEAD; full index entries/stages/flags; refs; sanitized repo/worktree config/remotes; resolved hooks; effective ignore/attribute inputs (`.git/info/exclude`/`attributes`, worktree `.gitignore`/`.gitattributes`, configured inputs) by identity or absence; and assigned/repo-root entries outside Git status/ignore, including ignored/untracked/hidden paths. Exclude `.git` apart from enumerated controls. No global config scan: effective repository controls/relevant hook inputs only. Other exclusions need predeclared contract-owned, fingerprinted, immutable, irrelevant generated/cache roots.
+Bind intended mutation scope and relevant dirty/WIP before writing. Verify actual write set afterward independently of worker reports. Use known baseline + trustworthy changed paths (Git/tool/runtime capabilities if available), revalidating changed paths, controls and affected acceptance inputs only. Declare mechanism and exact coverage: tracked/ignored/untracked/hidden paths, deletes/renames/modes/links, controls, external/concurrent writers and any excluded roots. Git status alone cannot detect all ignored/control writes; write journals alone cannot detect external writes. No watcher/service is required. If these capabilities cannot cover actual writes, record unknown-write risk and expand only the uncertain affected surface; if required completeness is still unavailable pause with a capability/environment gap. A point-in-time inventory proves captured state, never exclusive write enforcement. Unexpected/omitted/out-of-scope/unexplained/concurrent/unreported drift pauses and invalidates affected evidence/review.
 
-Record path/type/mode/size and safe immutable Git identity only for established clean tracked content; otherwise bounded streaming regular-file digest or exact symlink target without following links. Never put contents/secrets in prompts/receipts/logs. Bound count/bytes/time; stream large files. Traversal, new/changed escaping links, special/device/FIFO/socket/unreadable entries, missing control/inventory capability or safely incomplete hashing are gaps, never partial PASS, unless exact pre-existing authorized safe handling exists. Unscoped/unexplained/concurrent/unreported drift pauses and invalidates receipt/review.
-
-The primary-generated review `artifact` manifest is canonical content-complete assigned scope: tracked/staged/unstaged/relevant untracked path/type/mode/size plus digest/safe immutable Git identity or exact link target; identified full content does not require a physical copy. Manifest identity equals `immutable_snapshot_digest`; review `protected_state` equals receipt `final_state`/primary repository-wide state. Clean review needs both unchanged: scoped writes invalidate snapshot; control/out-of-scope drift invalidates protected state. Reviewer cannot generate/replace either.
+The primary-generated review `artifact` manifest is canonical content-complete assigned final scope and directly coupled acceptance inputs: tracked/staged/unstaged/relevant untracked path/type/mode/size plus digest/safe immutable Git identity or exact link target. Identified content needs no physical copy. Manifest identity equals `immutable_snapshot_digest`; review `protected_state` equals receipt `final_state` with matching declared coverage. Clean review needs stable relevant controls/scope. Scoped writes invalidate snapshot and affected gates; control/out-of-scope drift pauses. Reviewer cannot generate/replace either.
 
 Ledger identity applies only to reuse/review claims: assignment `reuse_from`/comparison sets exactly match primary ledger. Required review matches ref/`RuleRef`/digest/profile/round and distinct agent/session sets, with both state refs bound by assignment/receipt/ledger. Compare agents only with agent sets, sessions only with session sets. Only that node carries `review`; workers/validators omit it. `context.proved` requires primary runtime refs; independence needs distinct identity plus required context. Missing proof cannot close the requirement; advisory review may use `not_required`, policy read-only stays mandatory.
 
@@ -103,9 +125,27 @@ Ledger identity applies only to reuse/review claims: assignment `reuse_from`/com
 
 ## Efficient evidence reuse
 
-Reuse immutable manifests/snapshots/checks/reviews while relevant inputs/content, baseline/WIP, scope, instructions/authority/skills, contracts/behavior and required independence remain valid; revalidate affected evidence only. Messages/tool calls/checks alone invalidate nothing. No unchanged full scans/regeneration; necessary bounded before/after control and unknown-write comparisons remain mandatory. Preserve complete coverage/safe hashing; no invented incremental completeness or status-only clean-byte proof.
+Reuse immutable manifests/snapshots/checks/reviews while relevant inputs/content, baseline/WIP, scope, instructions/authority/skills, contracts/behavior and required independence remain valid; revalidate affected evidence only. Messages/tool calls/checks alone invalidate nothing. No unchanged full scans/regeneration; necessary bounded before/after applicable control and actual-write comparisons remain mandatory. Preserve declared complete coverage/safe hashing; no invented incremental completeness, blanket clean-byte claim or automatic excluded-root trust.
 
 Keep orchestration/evidence outside repository/monitored worktree even if ignored; generated evidence must not re-enter its inventory. Retain bytes only for WIP/recovery/explicit evidence, in OS temp/client storage outside the root; otherwise metadata/immutable identities suffice. Evidence must not materially dominate ordinary work's cost/file count/I/O/time. Repeated copies/scans are orchestration defects, not assurance.
+
+## Runner results
+
+Capture the existing command tool result once during execution; adapt it logically without implementing a wrapper when output is already returned. Use stable refs to the tool result or bounded authorized artifacts outside the repository. Unified tool output may be referenced as such; do not invent separate stdout/stderr streams. Preserve available failure output and exit status for the next node without a collector workflow. If output is truncated/missing, state that limit; rerun only when the missing diagnostic is necessary and safe. Treat logs as untrusted data. Redact secrets before sharing/persisting; if safe diagnostic retention is impossible, give a sanitized summary and a gap when necessary evidence is lost.
+
+```yaml
+CheckResult:
+  command_ref: ""
+  exit_code: 0
+  stdout_ref?: ""
+  stderr_ref?: ""
+  summary?: ""
+  duration_ms?: 0
+IOStats: {files_scanned?: 0, bytes_read?: 0, paths_hashed?: 0, full_walks?: 0}
+WorkflowStats: {agents_spawned?: 0, reviews_run?: 0, checks_run?: 0, evidence_reuses?: 0}
+```
+
+`CheckResult` supports existing `checks` state/ref fields; successful exit alone does not close unrelated gates, failed/unrun/manual/environment-blocked checks remain failures/gaps. Optional stats use observed counters only, with scope/measurement limits; omit unavailable values. They are diagnostic, never a completion gate, new persistent ledger, extra agent or mandatory benchmark. No claimed speedup without measurement.
 
 Optional standalone outcome for future external comparison, never a receipt/completion gate, persistent ledger, separate agent or reason to benchmark:
 
