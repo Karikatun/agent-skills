@@ -28,6 +28,16 @@ Delegated Engineering **2.4.3** ограничивает проверки contro
 
 [Инструкция для 12 агентов](INSTALLATION.ru.md): личные и проектные каталоги, вызов и проверка загрузки для Codex, Claude Code, Cursor, Copilot, Gemini CLI, Cascade, Cline, OpenCode, Amp, Kiro, Antigravity и Kilo Code.
 
+### Рекомендуемый способ: Vercel Skills CLI
+
+Если установлены Node.js/npm и Git, выполни команду из проекта, которому нужен навык:
+
+```sh
+DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 npx skills@1.7.1 add https://github.com/Karikatun/agent-skills/tree/4363839bc7e094df3e318d6396aea404c473e22e/skills/api-performance-review --skill api-performance-review --agent codex --copy
+```
+
+В команде нет явных флагов `--yes`. В обычном интерактивном терминале установщик может задавать вопросы, но при обнаружении агента, включая Codex, автоматически пропускает подтверждения; npm тоже может не спрашивать при наличии пакета в кэше. Команда выбирает API Performance Review 1.0.2 на фиксированном коммите. Если появляется интерактивный выбор области установки, выбери **Project**: тогда копия окажется в `.agents/skills/api-performance-review`, а источник и ref — в `skills-lock.json`. Сначала сохрани существующую копию и свои правки вне каталогов обнаружения: повторная установка заменяет папку навыка, включая дополнительные файлы. `--skill` выбирает навык, `--agent` — клиент; `--global` выбирает личную установку. Без `--global` запуск через агента без вопросов по умолчанию выбирает Project; интерактивный терминал предлагает выбрать область установки. Другие агенты, личная установка, удаление и границы проверки описаны в [инструкции CLI](INSTALLATION.ru.md#vercel-skills-cli). [Vercel CLI](https://github.com/vercel-labs/skills) — внешний установщик.
+
 ### Скачать только выбранный навык
 
 Выбери один архив в таблице. В каждом ZIP лежит папка одного навыка. Git и клонирование репозитория не нужны.

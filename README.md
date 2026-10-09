@@ -28,6 +28,16 @@ The collection uses English instructions and replies in the user's language. Eac
 
 [Installation guide for 12 agents](INSTALLATION.md): personal and project directories, invocation, and discovery checks for Codex, Claude Code, Cursor, Copilot, Gemini CLI, Cascade, Cline, OpenCode, Amp, Kiro, Antigravity, and Kilo Code.
 
+### Recommended: Vercel Skills CLI
+
+With Node.js/npm and Git installed, run this from the project where you want the skill:
+
+```sh
+DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 npx skills@1.7.1 add https://github.com/Karikatun/agent-skills/tree/4363839bc7e094df3e318d6396aea404c473e22e/skills/api-performance-review --skill api-performance-review --agent codex --copy
+```
+
+The command omits explicit `--yes` flags. In an ordinary interactive terminal the installer may prompt, but detected agent execution, including Codex, automatically skips installer confirmations; npm may also proceed without prompting when cached. This selects API Performance Review 1.0.2 at a fixed commit. Choose **Project** if the interactive scope prompt appears; that scope copies it into `.agents/skills/api-performance-review`, with the source and ref in `skills-lock.json`. Preserve an existing copy and local edits outside discovery directories first: reinstallation replaces that skill folder, including extra files. `--skill` selects the skill, `--agent` selects the client, and `--global` selects personal installation. Without `--global`, noninteractive agent execution defaults to Project; an interactive terminal asks you to choose the scope. See the [CLI guide and tested scope](INSTALLATION.md#vercel-skills-cli) for other agents, personal installation, and removal. The [Vercel CLI](https://github.com/vercel-labs/skills) is an external installer.
+
 ### Download only that skill
 
 Choose one archive below. Each ZIP contains one skill folder, not the repository. You do not need Git or a clone.

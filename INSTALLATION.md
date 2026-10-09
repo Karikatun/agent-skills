@@ -4,7 +4,34 @@
 
 Install one skill in any of the 12 agent families below. Paths and commands were checked against official documentation on September 10, 2026. Installation and execution of this collection have not been tested in all 12 clients.
 
-## Install one skill
+## Vercel Skills CLI
+
+Recommended for a project installation when Node.js/npm and Git are available. Run from the target project's root:
+
+```sh
+DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 npx skills@1.7.1 add https://github.com/Karikatun/agent-skills/tree/4363839bc7e094df3e318d6396aea404c473e22e/skills/api-performance-review --skill api-performance-review --agent codex --copy
+```
+
+The installer version and source commit are pinned separately. This commit contains API Performance Review 1.0.2. Choose **Project** if the interactive installation-scope prompt appears. In Project scope, the result is `.agents/skills/api-performance-review/SKILL.md` with all bundled files and a project `skills-lock.json` recording the source, commit and content hash. The CLI fetches the source repository temporarily; the individual ZIP below downloads only the selected skill.
+
+- `--skill api-performance-review` installs only that named skill. Select a different skill and its reviewed source ref when needed.
+- `--agent codex` selects Codex; use the external CLI's supported identifier for another client, such as `claude-code` or `cursor`. These clients were not tested in this pilot.
+- `--global` selects personal installation in the CLI's chosen client directory. Without it, noninteractive agent execution defaults to Project, while an interactive terminal asks you to choose Project or Global. Choose **Project** for this guide's local paths and lock. Personal installation was not tested in this pilot.
+- `--copy` uses ordinary files. The recommended commands omit explicit `--yes` flags. In an ordinary interactive terminal the installer may prompt, but Skills CLI 1.7.1 automatically skips installer confirmations when it detects an agent, including Codex. npm may also proceed without prompting when the package is cached. Automation can overwrite or remove the selected skill without confirmation. Explicit `--yes` flags opt into unattended execution in other environments.
+
+Before installation or update, review the selected source and preserve any existing skill folder outside discovery directories. Reinstallation replaces local edits and removes extra files from that folder; do not treat a general confirmation prompt as a local-edit safeguard. Keep a single discovered copy.
+
+To remove this selected project skill, run from the same project:
+
+```sh
+DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 npx skills@1.7.1 remove api-performance-review
+```
+
+Omit `--agent` for complete removal of the selected skill: in the tested version, agent-scoped removal left the shared `.agents/skills` copy and lock entry. Named removal without `--agent` removed both and preserved an unrelated skill. Start a fresh client session after removal.
+
+On October 9, 2026, an isolated macOS pilot tested the real `npx` entry point with Skills CLI 1.7.1, Node.js 22.23.1 and npm 10.9.8. The isolated pilot used noninteractive `--yes` execution; the recommended commands above omit explicit `--yes` flags, but agent detection can still skip installer prompts. Human interactive confirmation behavior was not tested. The installer and runtime dependencies were reviewed and materialized from verified local archives with npm lifecycle scripts disabled. Project installation from the HTTPS commit URL matched all nine reviewed skill files and their modes; selected-only installation, the pinned lock entry, repeated installation, overwrite behavior, and named removal passed. Fresh Codex discovery remained unverified because app-server state-database initialization was blocked in the test environment. No personal installation or agent task execution was tested. Copying files does not establish semantic compatibility with every client. The [CLI source and documentation](https://github.com/vercel-labs/skills) describe its supported options.
+
+## Install one skill from a ZIP
 
 1. Choose a skill in the [download table](README.md#download-only-that-skill) and download its ZIP and matching `.sha256` file into the same folder. No repository clone is needed.
 2. Verify the checksum before extraction. For API Performance Review 1.0.2, run `shasum -a 256 -c api-performance-review-1.0.2.zip.sha256` on macOS or `sha256sum -c api-performance-review-1.0.2.zip.sha256` on Linux. In PowerShell, run `Get-FileHash .\api-performance-review-1.0.2.zip -Algorithm SHA256` and compare the result with the downloaded `.sha256` file. This checks integrity, not publisher identity.
