@@ -6,7 +6,7 @@ Focused, reusable workflows for coding agents. Install only the skills you need;
 
 ## Available skills
 
-Delegated Engineering **2.4.3** scopes control and evidence checks to the task, retains existing runner diagnostics, reduces unnecessary handoffs and duplicate reviews, and uses fitting low/medium effort for known procedures. Progress presentation remains removed; authority, WIP, required independence, HARDENED closure and runtime-evidence limits remain. No measured speedup is claimed. Download and installation links below select **2.4.3**; source checks, publication and installation require separate evidence.
+Delegated Engineering **2.4.3** scopes control and evidence checks to the task, retains existing runner diagnostics, reduces unnecessary handoffs and duplicate reviews, and uses fitting low/medium effort for known procedures. Progress presentation remains removed; authority, WIP, required independence, HARDENED closure and runtime-evidence limits remain. No measured speedup is claimed. Versioned download and installation links below select **2.4.3**; source checks, publication and installation require separate evidence.
 
 | Skill | Version | Use it for |
 | --- | --- | --- |
@@ -33,10 +33,14 @@ The collection uses English instructions and replies in the user's language. Eac
 With Node.js/npm and Git installed, run this from the project where you want the skill:
 
 ```sh
-DISABLE_TELEMETRY=1 DO_NOT_TRACK=1 npx skills@1.7.1 add https://github.com/Karikatun/agent-skills/tree/4363839bc7e094df3e318d6396aea404c473e22e/skills/api-performance-review --skill api-performance-review --agent codex --copy
+npx skills add Karikatun/agent-skills@delegated-engineering
 ```
 
-The command omits explicit `--yes` flags. In an ordinary interactive terminal the installer may prompt, but detected agent execution, including Codex, automatically skips installer confirmations; npm may also proceed without prompting when cached. This selects API Performance Review 1.0.2 at a fixed commit. Choose **Project** if the interactive scope prompt appears; that scope copies it into `.agents/skills/api-performance-review`, with the source and ref in `skills-lock.json`. Preserve an existing copy and local edits outside discovery directories first: reinstallation replaces that skill folder, including extra files. `--skill` selects the skill, `--agent` selects the client, and `--global` selects personal installation. Without `--global`, noninteractive agent execution defaults to Project; an interactive terminal asks you to choose the scope. See the [CLI guide and tested scope](INSTALLATION.md#vercel-skills-cli) for other agents, personal installation, and removal. The [Vercel CLI](https://github.com/vercel-labs/skills) is an external installer.
+The format is `owner/repo@skill`: `Karikatun/agent-skills` is the GitHub repository and `delegated-engineering` selects the skill. This uses the latest Skills CLI and the repository's default branch, without pinning either version.
+
+To choose from the collection in an ordinary interactive terminal, use `npx skills add Karikatun/agent-skills`. The installer may ask for skills, agents, and installation scope. Detected agent execution, including Codex, skips confirmations and defaults to Project; do not rely on prompts to limit the selection.
+
+Preserve an existing skill folder and local edits outside discovery directories before reinstalling: replacement removes local edits and extra files. The [installation guide](INSTALLATION.md#vercel-skills-cli) covers pinned versions, telemetry opt-out, copying, agent and scope selection, and removal. [Vercel Skills CLI](https://github.com/vercel-labs/skills) is an external installer.
 
 ### Download only that skill
 
