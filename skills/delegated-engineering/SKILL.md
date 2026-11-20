@@ -2,7 +2,7 @@
 name: delegated-engineering
 description: "Delegate repository engineering with risk-scaled evidence."
 metadata:
-  version: "2.4.4"
+  version: "2.4.5"
 ---
 
 # Delegated Engineering
@@ -71,12 +71,14 @@ Split mixed work only at a useful natural boundary. When high-risk work has a ge
 | --- | --- | --- | --- | --- |
 | GPT-6 Luna (`gpt-6-luna`), fitting explorer/worker | extraction/mechanical edits/deterministic checks | short local interpretation within Luna's class | harder bounded lookup/transformation within Luna's class | `xhigh`: rare hard bounded reasoning; `max`: measured class or compatible explicit pin |
 | GPT-6.1 Terra (`gpt-6.1-terra`), model-capable role | simple rewrite from supplied material | default within Terra's contained classes | visual ambiguity/dependent multi-step reasoning within that class | `xhigh`/`max`: justified exceptional case with live support; no competence/authority upgrade |
-| GPT-6.1 Sol (`gpt-6.1-sol`) | known execution recipe under a fitting pin | default remaining planning/implementation/debugging | ambiguity/dependent invariants/complex debugging/shared contracts/security | `xhigh`: exceptional hypotheses/races/recovery; `max`: hardest justified bounded cases |
-| GPT-6 Astra (`gpt-6-astra`) | default justified escalation | broader linked constraints | difficult causal reasoning | `xhigh`/`max`: exceptional interdependent/hardest cases under same gate |
+| GPT-6.2 Sol (`gpt-6.2-sol`) | known execution recipe under a fitting pin | default remaining planning/implementation/debugging | ambiguity/dependent invariants/complex debugging/shared contracts/security | `xhigh`: exceptional hypotheses/races/recovery; `max`: hardest justified bounded cases |
+| GPT-6.2 Astra (`gpt-6.2-astra`) | default justified escalation | broader linked constraints | difficult causal reasoning | `xhigh`/`max`: exceptional interdependent/hardest cases under same gate |
+
+The authoring host advertises `low` (omission default), `medium`, `high`, `xhigh`, `max` and `ultra` for both GPT-6.2 models. Use the routing effort above when the host default differs. `ultra` requires a compatible explicit user pin and live support.
 
 Astra: rare, node-local; concrete Sol-insufficiency OR cited real historical/eval task-class outcomes showing lower expected total cost per accepted result than Sol. HIGH_RISK/EXTREME alone never qualifies; absent data gives no advance permission. Higher effort never turns Luna/Terra into a Sol-risk owner.
 
-Live support/fixed/inherited settings govern requests. For Terra use a model-capable role with explicit `gpt-6.1-terra` and an assignment/fork that can apply it. A fixed role named Terra may select an older model; a role label or inherited Sol/Luna is insufficient. If Terra is unavailable, inherited, rejected or overridden by fixed configuration, use a compatible dispatch shape; otherwise pause/report the capability gap. Never silently substitute Luna/Sol or proceed after a known requested/runtime mismatch. The compatible explicit user-pin exception above remains. If the live client makes `fork_turns: "all"` inherit settings and reject overrides, an explicit pair needs supported `fork_turns: "none"` plus sufficient assignment context. Fixed `economy_terra_worker` may be GPT-5.6 Terra, not GPT-6.1 Terra; check effective configuration. FULL loads [reasoning effort](references/reasoning-effort.md) for further actual compatibility questions; FAST remains self-contained.
+Live support/fixed/inherited settings govern requests. Automatic Sol/Astra routing uses the canonical ID and selected effort above. Use a compatible role/fork that applies the pair; if unavailable, pause/report the capability gap. For Terra use a model-capable role with explicit `gpt-6.1-terra` and an assignment/fork that can apply it. A fixed role named Terra may select an older model; a role label or inherited Sol/Luna is insufficient. If Terra is unavailable, inherited, rejected or overridden by fixed configuration, use a compatible dispatch shape; otherwise pause/report the capability gap. Never silently substitute Luna/Sol or proceed after a known requested/runtime mismatch. The compatible explicit user-pin exception above remains. If the live client makes `fork_turns: "all"` inherit settings and reject overrides, an explicit pair needs supported `fork_turns: "none"` plus sufficient assignment context. Fixed `economy_terra_worker` may be GPT-5.6 Terra, not GPT-6.1 Terra; check effective configuration. FULL loads [reasoning effort](references/reasoning-effort.md) for further actual compatibility questions; FAST remains self-contained.
 
 Requested model/role/effort is not observed runtime; model proof is not effort proof. Absent proof record unknown/unverified, never guarantee Terra actually ran from the request alone. Unknown effort alone blocks only a specific safety/review claim requiring it.
 

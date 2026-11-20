@@ -1,8 +1,10 @@
 # Delegated Engineering
 
-Version **2.4.4** adds direct GPT-6.1 Terra routing for contained visual, app, writing and semantic code work, distinct from deterministic Luna work and Sol risk decisions. Authority, WIP, acceptance, independent review and HARDENED evidence remain. Runtime policy lives in [SKILL.md](SKILL.md) and its conditional references; this README documents the package, history and usage rather than creating another source of rules. Local package checks establish neither installation, host enforcement nor live runtime behavior.
+Source version **2.4.5** selects GPT-6.2 Sol for Sol routes and GPT-6.2 Astra for qualified Astra escalations. The [SKILL.md](SKILL.md) entrypoint and its conditional references define runtime policy. This README documents the package, history and usage.
 
 ## Changes and compatibility
+
+**2.4.5** updates the automatic model IDs to `gpt-6.2-sol` and `gpt-6.2-astra`. The authoring host's `spawn_agent` schema advertises `low` (omission default), `medium`, `high`, `xhigh`, `max` and `ultra` for both models. The skill requests `medium` for ordinary Sol reasoning and starts qualified Astra escalation at `low`, with `ultra` reserved for compatible explicit pins. Compatible older pins still work on clients that support them. Terra and Luna keep their existing responsibilities, and Astra still requires concrete Sol insufficiency or relevant empirical evidence. Codex accepted explicit `spawn_agent` requests for `gpt-6.2-sol` at `medium` and `gpt-6.2-astra` at `low`, both with `fork_turns: "none"`. Both agents returned responses. The provider-side model and effort were unverified.
 
 **2.4.4** adds ordered node routing independent of workflow mode: compatible user pins, mandatory risk/specialist floors, contained Terra classes, deterministic Luna classes, then remaining Sol work. A low-risk FAST task can use one Terra child. Semantic local fixes and audience-aware writing route to Terra; exact prescribed edits and transformations route to Luna. Architecture, shared contracts, security/authority, complex cross-layer debugging, persistence, migration and concurrency remain Sol responsibilities. Mixed visual/risk work splits only at a useful boundary. Terra unavailability, inheritance or a fixed older role cannot silently fall back to Luna/Sol. Requested settings remain distinct from observed runtime; no model benchmark or speedup is claimed. All five runtime references remain unchanged from 2.4.3.
 
@@ -16,7 +18,7 @@ The prior local WIP removed the progress pilot reference, Python helper, HTML te
 
 **2.4.0** introduced separate node-level model/effort selection with live client awareness and requested versus observed settings. Compatible GPT-6/GPT-6.1 user pins remain supported. Effort fields do not create runtime proof or another verification system.
 
-2.4.4 retains 2.3.1's proportional workflow. The v2.2 compact protocol is not wire-compatible with strict v2.1 parsers; consumers must normalize its renamed/regrouped shapes. Strict consumers may also need to accept/normalize v2.4 effort fields and 2.4.1's optional node `task_class`. Optional `gates`, `evidence_coverage` and check `result` are additive; legacy acceptance/check/review fields normalize into gates. State refs now bind explicit controls + declared scope; strict consumers assuming a repository-wide tree must accept that semantic change or request justified expanded coverage. Internal acceptance state, diagnostic stats and `RoutingOutcome` are not mandatory receipt fields. This is source compatibility, not proof for every client.
+This version retains 2.3.1's proportional workflow. The v2.2 compact protocol is not wire-compatible with strict v2.1 parsers; consumers must normalize its renamed/regrouped shapes. Strict consumers may also need to accept/normalize v2.4 effort fields and 2.4.1's optional node `task_class`. Optional `gates`, `evidence_coverage` and check `result` are additive; legacy acceptance/check/review fields normalize into gates. State refs now bind explicit controls + declared scope; strict consumers assuming a repository-wide tree must accept that semantic change or request justified expanded coverage. Internal acceptance state, diagnostic stats and `RoutingOutcome` are not mandatory receipt fields. This is source compatibility, not proof for every client.
 
 ## Runtime locations and examples
 
@@ -51,12 +53,12 @@ This check covers package structure and configured fixtures, not agent behavior,
 
 ## Release references
 
-Fixed **2.4.4** release references: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.4/delegated-engineering-2.4.4.zip), [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.4/delegated-engineering-2.4.4.zip.sha256).
+Fixed **2.4.5** release references: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.5/delegated-engineering-2.4.5.zip), [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.5/delegated-engineering-2.4.5.zip.sha256).
 
 To select that fixed tag with a supported installer:
 
 ```text
-Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.4/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
+Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.5/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
 ```
 
 The fixed [1.0.1 compatibility tag](https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v1.0.1/skills/delegated-engineering) remains available; a release reference never proves live verification.
