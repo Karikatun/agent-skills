@@ -1,8 +1,12 @@
 # Delegated Engineering
 
-Source version **2.4.5** selects GPT-6.2 Sol for Sol routes and GPT-6.2 Astra for qualified Astra escalations. The [SKILL.md](SKILL.md) entrypoint and its conditional references define runtime policy. This README documents the package, history and usage.
+Version **2.4.7** improves acceptance and evidence checks and includes the model routing developed in 2.4.6. The [SKILL.md](SKILL.md) entrypoint and its conditional references define runtime policy. This README documents the package, history and usage.
 
 ## Changes and compatibility
+
+**2.4.7** binds acceptance to the agreed behavior and the inputs that decide it. Evidence claims follow the scenario, mode and environment checked. Discovery follows up on a plausible miss when it could change the decision. A contradiction triggers a trace to the original criterion and reconsideration of affected evidence. The workflow routes and receipt fields are unchanged.
+
+**2.4.6** routes each responsibility by the reasoning needed to complete and verify it. Luna can own bounded evidence discovery and procedures even when the overall task is high risk. Terra can own bounded planning, implementation, diagnosis and substantive local review. Sol owns decisions that require stronger reasoning about system behavior or material risk. Automatic dispatch applies the selected canonical model and effort through compatible client settings, including Luna. The selected model, required specialist qualifications, independent gates and observed runtime retain separate meanings. Existing model IDs, pin compatibility and receipt fields are unchanged.
 
 **2.4.5** updates the automatic model IDs to `gpt-6.2-sol` and `gpt-6.2-astra`. The authoring host's `spawn_agent` schema advertises `low` (omission default), `medium`, `high`, `xhigh`, `max` and `ultra` for both models. The skill requests `medium` for ordinary Sol reasoning and starts qualified Astra escalation at `low`, with `ultra` reserved for compatible explicit pins. Compatible older pins still work on clients that support them. Terra and Luna keep their existing responsibilities, and Astra still requires concrete Sol insufficiency or relevant empirical evidence. Codex accepted explicit `spawn_agent` requests for `gpt-6.2-sol` at `medium` and `gpt-6.2-astra` at `low`, both with `fork_turns: "none"`. Both agents returned responses. The provider-side model and effort were unverified.
 
@@ -29,7 +33,7 @@ This version retains 2.3.1's proportional workflow. The v2.2 compact protocol is
 - [Review profiles](references/review-profiles.md): independent gate responsibilities, conditional review depth and rework round limit.
 - [Reasoning effort](references/reasoning-effort.md): actual client/inheritance/continuation compatibility questions and exceptional settings.
 
-For example, an exact timeout lookup or known typo can use one Luna child and a focused answer/check with no DE reference files. A contained semantic code fix with known scope/check uses Terra medium; audience-aware writing from supplied facts and substantive screen/chart analysis also use Terra. An exact wording substitution stays Luna work. Architecture or complex cross-layer debugging uses Sol with fitting effort. Each keeps necessary local validation and any required review. FULL adds only phases needed by the task. Project instructions and task-needed runbooks still apply; these examples illustrate the runtime policy rather than overriding it.
+An exact timeout lookup or known typo can use one Luna child and a focused answer/check with no DE reference files. Terra can own a local behavior change through design, implementation and focused checks when the requirements and scope support that responsibility. Audience-aware writing and substantive chart interpretation also fit Terra. Sol fits architecture decisions and diagnosis of coupled system behavior. For a backup plan, reporting the results of known fixture checks can be a Luna assignment while assessing access isolation and recovery guarantees requires Sol. FULL adds only phases needed by the task. Project instructions, task-needed runbooks and required review still apply.
 
 ```text
 Use $delegated-engineering to locate the reconnect timeout. Do not change code.
@@ -53,12 +57,12 @@ This check covers package structure and configured fixtures, not agent behavior,
 
 ## Release references
 
-Fixed **2.4.5** release references: [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.5/delegated-engineering-2.4.5.zip), [SHA-256](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.5/delegated-engineering-2.4.5.zip.sha256).
+The fixed **2.4.7** release provides a [ZIP](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.7/delegated-engineering-2.4.7.zip) and its [SHA-256 checksum](https://github.com/Karikatun/agent-skills/releases/download/delegated-engineering-v2.4.7/delegated-engineering-2.4.7.zip.sha256).
 
 To select that fixed tag with a supported installer:
 
 ```text
-Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.5/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
+Use $skill-installer to install only delegated-engineering from https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v2.4.7/skills/delegated-engineering into my personal skills directory. Preserve any existing copy; do not install other skills.
 ```
 
 The fixed [1.0.1 compatibility tag](https://github.com/Karikatun/agent-skills/tree/delegated-engineering-v1.0.1/skills/delegated-engineering) remains available; a release reference never proves live verification.

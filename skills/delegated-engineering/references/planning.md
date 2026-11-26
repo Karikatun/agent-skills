@@ -12,7 +12,7 @@ Before an agent/discovery/planner/review/snapshot/expensive check, identify the 
 
 For debugging, prioritize the smallest authorized failing check -> retain bounded stdout/stderr -> inspect exact failure before broad planning or helper tooling. Use existing shell/Docker/test/logging capabilities first; plumbing becomes an engineering pipeline only when it actually needs code/tooling changes. One compatible worker owns a known procedural chain. A new agent needs independence, materially different responsibility, model or ownership change; no mandatory diagnostic/preparation/execution handoffs.
 
-Search is a separate optional capability: use available trusted indexed lexical search for candidate discovery/navigation, otherwise exact search/`rg`/Git. Verify relevant actual sources before citing; index results alone are no evidence. No installation, index creation in the repository, mandatory `tgrep`, semantic RAG, embeddings, vector database, Zoekt or new search service.
+Use the [core search limits](../SKILL.md#self-contained-fast-protocol). Verify relevant actual sources before citing; index results alone are no evidence. Discovery resolves the concrete uncertainty with sources and freshness relevant to the decision.
 
 Create a lazy `TaskGraph` only when multiple substantive nodes are necessary, adding real dependencies as they arise. Unblock the critical path, cheaply test a concrete risky hypothesis, and close mandatory acceptance; no speculative fallbacks/phases/agents.
 
@@ -33,6 +33,8 @@ Parallelism is an optimization, never a gate or reason to fill slots. Run only i
 Use one gate responsibility model: `{criterion, evidence, owner:"worker|validator|reviewer|specialist", independent, profile?}`. Bind each gate to its controlling rule and actual required evidence. Existing `acceptance`/`checks`/`review` fields remain compatible projections; normalize them once, never create another phase to satisfy an abstraction. Independent/specialist gates stay separate from worker self-checks. Before another reviewer ask which still-open acceptance/risk gate it closes; without a distinct responsibility it is duplicate work. Use [review profiles](review-profiles.md) only when review gates require it.
 
 For every FULL mode, primary keeps compact in-memory `AcceptanceState`: `{acceptance_open, blockers, active_hypothesis?, next_decision?, last_material_progress?}`; no file/ledger/agent. Each substantial step advances a named open acceptance/blocker. A cycle must produce task-relevant evidence, change, check result, concrete blocker, resolved cause or closed substantive node; preparation/context/snapshot/plan refresh alone is no progress.
+
+When the current interpretation contradicts an accepted source or decision, trace the disputed criterion to its original and revise only affected nodes and evidence. Preserve material conflicting claims until resolved. Send product or authority conflicts to the owning decision-maker. Use a fresh read-only advisor only for a distinct question that remains unresolved and needs one.
 
 After two consecutive cycles without material progress, stop repeating: state known facts, isolate the unresolved assumption and choose a different diagnostic toward nearest open acceptance. Long work may continue while closing real work; no arbitrary cutoff. Fix noisy infrastructure/root causes before rerunning symptoms. The core model gate distinguishes reasoning shortfall from capability/environment gaps.
 
